@@ -3,22 +3,19 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+<div id = "login-container">
+<h1>Entrar</h1>
+<form action=''>
+<label for ="email">Email</label>
+<input type="email" name='email' placeholder='Digite seu email...'></input> 
+<label for="password">Senha</label>
+<input type="password" name='password' id="password" placeholder='Digite a sua senha'></input>
+<a href='#' id='forgot-pass'>Esqueceu a senha?</a>
+<input type="submit" id='botao-cadastrar-se' value="Cadastre-se"></input>
+<input type="submit" id='botao-entrar' value="Entrar"></input>
+</form>
+</div>
   );
 }
 
