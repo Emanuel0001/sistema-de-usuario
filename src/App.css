@@ -66,16 +66,12 @@ input[type=email],[type=password] {
   
 } 
 
-#botao-entrar:hover {
-  background-color: blue;
-}
-
 #botao-entrar {
   text-align: center;
   background-color: rgb(3, 74, 226);
   
 }
-input[type=submit] {
+input[type=submit], input[type=button] {
   margin-top: 15%;
   color: #FFF;
   width: 100px;

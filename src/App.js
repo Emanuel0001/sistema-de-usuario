@@ -3,7 +3,7 @@ import './App.css';
 
 
 function App() {
-
+  
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [EmailErroMessage, setEmailErroMessage] = useState('');
   const [isValidPassword, setIsValidPassword] = useState(false);
@@ -17,6 +17,8 @@ function App() {
     if (password.length >= 6) {
       setIsValidPassword(true);
       setPasswordErroMessage("Senha valida!")
+    
+
     } else {
       setIsValidPassword(false)
       setPasswordErroMessage("A senha deve ter no minimo 6 caracteres")
@@ -33,14 +35,25 @@ function App() {
       setIsEmailValid(false);
       setEmailErroMessage('Digite um email Valido!');
     }
-
+  console.log(retornaTrueOuFalse());
   };
+   
+  const retornaTrueOuFalse = () => {
+  
+    if(isEmailValid && isValidPassword ){
+      return false;
+    } else {
+      return true;
+    }
+    
+  } 
+  
 
   return (
     <div id="login-container">
       <h1>Entrar</h1>
 
-      <form >
+      <form action='http://localhost:3001/' method='POST'>
         <label for="email">Email</label>
         <input
           type="email"
@@ -57,7 +70,8 @@ function App() {
           type="password"
           name="password"
           placeholder='Senha'
-          onChange={validatePassword}>
+          onChange={validatePassword}
+         >
         </input>
         <div className={`message ${isValidPassword ? 'success' : 'error'}`}>
           {PasswordErroMessage}
@@ -65,7 +79,7 @@ function App() {
 
         <a href='#' id='forgot-pass'>Esqueceu a senha?</a>
         <input type="submit" id='botao-cadastrar-se' value="Cadastre-se"></input>
-        <input type="submit" id='botao-entrar' value="Entrar"></input>
+        <input type="submit" id='botao-entrar' value="Entrar" disabled={retornaTrueOuFalse()}></input>
       </form>
       
     </div>
