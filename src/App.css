@@ -22,7 +22,7 @@ h1 {
   border: solid 1px rgba(68, 68, 68, 0.89);
   background-color: #FFF;
   width: 450px;
-  height: 400px;
+  height: 410px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 30px;
@@ -68,7 +68,7 @@ input[type=email],[type=password] {
 
 #botao-entrar {
   text-align: center;
-  background-color: rgb(3, 74, 226);
+  background-color: rgb(13, 77, 216);
   
 }
 input[type=submit], input[type=button] {
@@ -101,4 +101,17 @@ label, input {
 
 .error {
   color: red;
+}
+button:disabled.true,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+#res {
+background-color: green;
+color: #FFF;
+font-size: 23px;
+border-radius: 5px;
+
 }

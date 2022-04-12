@@ -14,15 +14,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/', (req, res) => {
+  console.log(req.body)
     const email = req.body.email;
     const password = req.body.password;
 
     if (email === 'hitallosoares1@gmail.com' && password === "123456") {
 
-        return res.send('Sucesso!');
+        return res.json({"message": "Sucesso"});
+
 
     } else {
-        return res.send('Credencias Inválidas');
+        return res.json({"error":"Credencias Inválidas"});
     }
 });
 
