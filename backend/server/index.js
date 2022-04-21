@@ -13,20 +13,48 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const { Client } = require('pg');
+const { rows } = require('pg/lib/defaults');
+
+const client = new Client({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'banco_usuario',
+    password: '18066081',
+    port: 5432,
+})
+client.connect()
+
 app.post('/', (req, res) => {
-  console.log(req.body)
+   
+    console.log(req.body)
     const email = req.body.email;
     const password = req.body.password;
 
-    if (email === 'hitallosoares1@gmail.com' && password === "123456") {
+
+   
+client.query(`select * from usuario WHERE email = $1 AND password = $2`,[email,password])
+.then(results => {
+    const resultado = results
+   
+    console.log(resultado.rowCount )
+    
+    
+    if (resultado.rowCount === 1) {
 
         return res.json({"message": "Sucesso"});
-
 
     } else {
         return res.json({"error":"Credencias Inválidas"});
     }
+})
+.catch(e => console.log(" erro!!",)) 
+  
+    
 });
 
 
 app.listen(port, () => console.log(`Rodando na porta: ${port}!`))
+
+
+

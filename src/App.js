@@ -56,8 +56,7 @@ function App() {
   }
   const submitForm = (event) => {
     event.preventDefault();
-    
-  
+   
     fetch('http://localhost:3001/', {
       method: 'POST',
       headers: {
@@ -70,10 +69,7 @@ function App() {
     .then((json) => setApiResponse(json))
 
     .catch(e => console.log(" erro!!",)) 
- 
-  }
-
-  var res = window.document.getElementById('res')
+var res = window.document.getElementById('res')
   var texto = JSON.stringify(apiResponse)
   var texto2 = JSON.parse(texto)
  if(texto2.message){
@@ -82,8 +78,14 @@ function App() {
   res.innerHTML = texto2.error
 
  }
+
+  }
+
   
+  
+
   return (
+  
 <div id="login-container">    
       <h1>Entrar</h1>
      
