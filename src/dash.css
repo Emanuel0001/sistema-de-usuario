@@ -1,0 +1,20 @@
+/* geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(12, 34, 73);
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+  }
+  
+  body {
+    background-color: rgb(237, 239, 241);
+  }
+  
+h1{ 
+font-size: 40px;
+height: 50px;
+background-color: rgb(76, 118, 235);
+color: rgb(247, 247, 247);
+}
