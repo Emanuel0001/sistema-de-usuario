@@ -179,7 +179,7 @@ function App() {
                     value="Salvar"
                     disabled={disabledButton()}
                 ></input>
-               <Link to='/'><button id="link">Voltar</button></Link>
+               <Link to='/' id="link"><button  id='botao-cadastrar-se' >Voltar</button></Link>
                
 
             </form>

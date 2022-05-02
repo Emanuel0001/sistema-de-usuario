@@ -9,14 +9,14 @@ import {
 import { useHistory } from "react-router-dom";
 
 function App() {
-   let history = useHistory();
+  let history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [apiResponse, setApiResponse] = useState('');
 
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
-
+  
   const [PasswordErroMessage, setPasswordErroMessage] = useState('');
   const [EmailErroMessage, setEmailErroMessage] = useState('');
 
@@ -63,40 +63,41 @@ function App() {
   }
   const submitForm = (event) => {
     event.preventDefault();
-
+   
     fetch('http://localhost:3001/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: email, password: password })
+      body: JSON.stringify({email: email, password: password})
 
     })
-      .then((res) => res.json())
-      .then((json) => setApiResponse(json))
+    .then((res) => res.json())
+    .then((json) => setApiResponse(json))
 
-      .catch(e => console.log(" erro!!",))
+    .catch(e => console.log(" erro!!",)) 
+var res = window.document.getElementById('res')
+  var texto = JSON.stringify(apiResponse)
+  var texto2 = JSON.parse(texto)
+  if (texto2.message) {
+    res.innerHTML = texto2.message
+    history.push('/DashBoard')
 
-    var res = window.document.getElementById('res')
-    var texto = JSON.stringify(apiResponse)
-    var texto2 = JSON.parse(texto)
-    if (texto2.message) {
-      res.innerHTML = texto2.message
-      history.push('/DashBoard')
-
-    } else {
-      res.innerHTML = texto2.error
-
-    }
+  } else {
+    res.innerHTML = texto2.error
 
   }
+
+  }
+
   
- 
+  
+
   return (
-
-    <div id="login-container">
+  
+<div id="login-container">    
       <h1>Entrar</h1>
-
+     
       <form onSubmit={submitForm}>
         <label for="email">Email</label>
         <input
@@ -122,19 +123,17 @@ function App() {
         <div className={`message ${isValidPassword ? 'success' : 'error'}`}>
           {PasswordErroMessage}
         </div>
+<Link to='/cadastrar'id="link"><button id='botao-cadastrar-se' >Cadastrar-se</button></Link>
+
         <input
           type="submit"
           id='botao-entrar'
           value="Entrar"
           disabled={disabledButton()}
         ></input>
-      
-<Link to='/cadastrar'><button id="link" >Cadastrar-se</button></Link>
- <div id="res">Resultado </div>
+        
       </form>
-      
-  
-     
+    <div id="res">Resultado </div> 
     </div>
 
 

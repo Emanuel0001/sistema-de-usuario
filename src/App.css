@@ -14,36 +14,18 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
   background-color: #FFF;
   height: 45px;
   
 }
-#Sair {
-  background-color: rgb(218, 40, 40);
-  height: 25px;
-  width: 50px;
-  color: #FFF;
-  border-radius: 5px;
-  float: right;
-  margin-right: 15px;
-}
 
-#link{
-  background-color: rgba(219, 214, 214, 0.774);
-  color: blue;
-  width: 120px;
-  height: 45px;
-  border-radius: 5px;
-  font-size: 20px;
-  margin-top: 30px;
-  margin-left: 250px;
-}
+
 #login-container {
   border-radius: 15px;
   border: solid 1px rgba(68, 68, 68, 0.89);
   background-color: #FFF;
-  width: 550px;
+  width: 470px;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -79,23 +61,26 @@ input[type=email],[type=password] {
   background-color: gray;
   color: #FFF;
 }
-#botao-entrar {
-  float: right;
-  text-align: center;
-  margin-top: 40px;
-  background-color: rgb(3, 74, 226);
-  
-}
+
 #botao-cadastrar-se {
-  float: right;
   text-align: center;
   background-color: rgba(219, 214, 214, 0.774);
   color: blue;
-  width: 120px;
-  display: flex;
-	justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  font-size: 20px;
+  
 } 
 
+#botao-entrar {
+  text-align: center;
+  background-color: rgb(13, 77, 216);
+  float: right;
+  margin-top: 10px;
+
+  
+}
 input[type=submit], input[type=button] {
   margin-top: 15%;
   color: #FFF;
@@ -127,13 +112,38 @@ label, input {
 .error {
   color: red;
 }
+button:disabled.true,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
 #res {
-  background-color: rgb(47, 199, 27);
-  width: 300px;
-  height: 40px;
-  margin-top: 200px;
-  margin-left: 80px;
-  font-size: 25px;
-  border-radius: 5px;
+  background-color: green;
   color: #FFF;
+  font-size: 23px;
+  border-radius: 5px;
+  height: 40px;  
+  float: left;
+  margin-left: 40px;
+  width: 300px;
+  margin-top: 30px;
+}
+#link{
+  background-color: rgba(219, 214, 214, 0.774);
+  color: blue;
+  width: 120px;
+  height: 45px;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-left: 170px;
+}
+#Sair {
+  background-color: rgb(218, 40, 40);
+  height: 25px;
+  width: 50px;
+  color: #FFF;
+  border-radius: 5px;
+  float: right;
+  margin-right: 15px;
 }

@@ -11,7 +11,7 @@ import './App.css';
       
     return (
      <div>
-         <h1>Bem-Vindo <Link to='/' id="Sair" >Sair</Link></h1>
+         <h1>BEM-VINDO <Link to='/' id="Sair" >Sair</Link></h1>
         
      </div>
   
