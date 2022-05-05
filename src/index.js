@@ -7,12 +7,12 @@ import Router from './Router'
 
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <CookiesProvider>
     <Router />
-  </React.StrictMode>,
+  </CookiesProvider>,
   document.getElementById('root')
 );
 

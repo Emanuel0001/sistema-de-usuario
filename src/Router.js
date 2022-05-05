@@ -8,9 +8,10 @@ import { Redirect } from "react-router-dom";
 import Login from './Login'
 import Cadastrar from './cadastrar'
 import DashBoard from "./DashBoard";
-
 import './App.css';
-const Home = () => {
+
+
+const router = () => {
   return (
     <Router>
          
@@ -25,4 +26,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default router;

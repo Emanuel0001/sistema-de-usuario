@@ -1,21 +1,32 @@
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-import Login from './Login'
-import Cadastrar from './cadastrar'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import './App.css';
-  const DashBoard = () => {
-      
-    return (
-     <div>
-         <h1>BEM-VINDO <Link to='/' id="Sair" >Sair</Link></h1>
-        
-     </div>
-  
-    );
+import { useCookies } from 'react-cookie';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import Cookies from 'js-cookie'
+
+const DashBoard = () => {
+  let history = useHistory();
+
+  useEffect(() => {
+
+    let dadosCookie = Cookies.get("user")
+
+    if (dadosCookie == 'Logado') {
+    } else { history.push('/') }
+  }, []);
+
+  const deletarCookie = () => {
+    Cookies.remove('user');
+    history.push('/');
   }
-  
-  export default DashBoard;
+  return (
+    <div>
+      <h1>BEM-VINDO <Link onClick={deletarCookie} id="Sair" >Sair</Link></h1>
+
+    </div>
+
+  );
+}
+
+export default DashBoard;
