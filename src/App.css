@@ -21,10 +21,9 @@ h1 {
   
 }
 
-
 #login-container {
   border-radius: 5px;
-  border: solid 1px rgba(121, 119, 119, 0.808);
+  border: solid 1px rgba(80, 78, 78, 0.808);
   background-color: #FFF;
   width: 470px;
   height: 500px;

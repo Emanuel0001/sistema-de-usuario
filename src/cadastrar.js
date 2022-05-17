@@ -20,7 +20,6 @@ function App() {
 
 
     const [isValidSenhas, setIsValidSenhas] = useState(false);
-
     const [ValidaSenhasMessage, setValidaSenhasMessage] = useState('');
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -31,7 +30,7 @@ function App() {
 
         if (password.length >= 6) {
             setIsValidPassword(true);
-            setPasswordErroMessage("Senha valida!")
+            setPasswordErroMessage("")
 
 
         } else {
@@ -45,7 +44,7 @@ function App() {
 
         if (passwordConfirmacao.length >= 6) {
             setIsValidPasswordConfimacao(true);
-            setPasswordErroMessage2("Senha valida!")
+            setPasswordErroMessage2("")
 
 
         } else {
@@ -53,30 +52,28 @@ function App() {
             setPasswordErroMessage2("A senha deve ter no minimo 6 caracteres")
         }
     }
-    /*
+    
         const validaSenhas = (event) => {
-           setIsValidSenhas(event.target.value)
-            
+           
            var senha1= passwordConfirmacao 
            var senha2 =  password 
-           if (password = passwordConfirmacao) {
+           if (senha1 === senha2) {
             setIsValidSenhas(true);
-            setValidaSenhasMessage("Senhas Iguais!")
+            setValidaSenhasMessage("")
     
            } else {
             setIsValidPasswordConfimacao(false)
-            setPasswordErroMessage2("Senhas Não conferem")
+            setPasswordErroMessage2("Erro: Senhas não conferem")
         }
     
         }
-      */
     const validateEmail = (event) => {
         const email = event.target.value;
         setEmail(event.target.value);
 
         if (emailRegex.test(email)) {
             setIsEmailValid(true);
-            setEmailErroMessage('Email valido!');
+            setEmailErroMessage();
 
         } else {
             setIsEmailValid(false);
@@ -163,6 +160,7 @@ function App() {
                     placeholder='Confirm Password'
                     value={passwordConfirmacao}
                     onChange={validatePasswordConfimacao}
+                    
                 >
                 </input>
                 <div className={`message ${isValidPasswordConfirmacao ? 'success' : 'error'}`}>
@@ -174,6 +172,7 @@ function App() {
                 </div>
 
                 <input
+                    onClick={validaSenhas}
                     type="submit"
                     id='botao-entrar'
                     value="CREATE ACCOUNT"

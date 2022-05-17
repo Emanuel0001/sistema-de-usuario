@@ -33,7 +33,7 @@ function App() {
 
     if (password.length >= 6) {
       setIsValidPassword(true);
-      setPasswordErroMessage("Senha valida!")
+      setPasswordErroMessage("")
 
 
     } else {
@@ -48,7 +48,7 @@ function App() {
 
     if (emailRegex.test(email)) {
       setIsEmailValid(true);
-      setEmailErroMessage('Email valido!');
+      setEmailErroMessage('');
 
     } else {
       setIsEmailValid(false);
@@ -105,7 +105,7 @@ function App() {
   return (
 
     <div id="login-container">
-      <img src={logo}/>
+      <img src={logo} />
       <h1>Sign In</h1>
 
       <form onSubmit={submitForm}>
@@ -130,7 +130,7 @@ function App() {
         </input>
         <div className={`message ${isValidPassword ? 'success' : 'error'}`}>
           {PasswordErroMessage}
-       </div> 
+        </div>
 
         <input
           type="submit"
@@ -138,14 +138,14 @@ function App() {
           value="LOGIN"
           disabled={disabledButton()}
         ></input>
-        
-      </form>
 
+      </form>
       <div id="res"> </div>
-      <footer> 
+
+      <footer>
         <Link to='/cadastrar' id="link">Create Account</Link>
       </footer>
-   </div>
+    </div>
 
 
   );
