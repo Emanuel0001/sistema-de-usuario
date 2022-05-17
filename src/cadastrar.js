@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
-
+import './Cadastrar.css';
+import imagem from './imagens/iconeEditar.png'
 
 function App() {
     const [email, setEmail] = useState('');
@@ -128,15 +128,16 @@ function App() {
     return (
 
         <div id="login-container">
-            <h1>Cadastre-se</h1>
+            <img src={imagem}></img>
+            <h1>Create Account</h1>
 
             <form onSubmit={submitForm}>
-                <label for="email">Email</label>
+                
                 <input
                     type="email"
                     name='email'
                     id='email'
-                    placeholder='Email...'
+                    placeholder='E-mail'
                     value={email}
                     onChange={validateEmail}>
                 </input>
@@ -144,11 +145,10 @@ function App() {
                     {EmailErroMessage}
                 </div>
 
-                <label for="password">Senha</label>
                 <input
                     type="password"
                     name="password"
-                    placeholder='Senha'
+                    placeholder='Password'
                     value={password}
                     onChange={validatePassword}
                 >
@@ -156,11 +156,11 @@ function App() {
                 <div className={`message ${isValidPassword ? 'success' : 'error'}`}>
                     {PasswordErroMessage}
                 </div>
-                <label for="password">Confirmar senha</label>
+
                 <input
                     type="password"
                     name="pass"
-                    placeholder='Senha'
+                    placeholder='Confirm Password'
                     value={passwordConfirmacao}
                     onChange={validatePasswordConfimacao}
                 >
@@ -176,14 +176,17 @@ function App() {
                 <input
                     type="submit"
                     id='botao-entrar'
-                    value="Salvar"
+                    value="CREATE ACCOUNT"
                     disabled={disabledButton()}
                 ></input>
-               <Link to='/' id="link"><button  id='botao-cadastrar-se' >Voltar</button></Link>
+                <footer>
+                  <Link to='/' id="link">Login Here</Link>   
+                </footer>
+              
                
 
             </form>
-            <div id="res">Resultado </div>
+            <div id="res"></div>
 
 
 

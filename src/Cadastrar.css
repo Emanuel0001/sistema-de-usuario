@@ -1,0 +1,141 @@
+/* geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(12, 34, 73);
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+  }
+  
+  body {
+    background-color: rgb(124, 126, 129);
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 25px;
+    background-color: #FFF;
+    height: 45px;
+    
+  }
+  
+  
+  #login-container {
+    border-radius: 5px;
+    border: solid 1px rgba(68, 68, 68, 0.89);
+    background-color: #FFF;
+    width: 470px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 30px;
+    margin-top: 5vh;
+    text-align: center;
+  }
+  
+  form {   
+    margin-top: 60px;
+    margin-bottom: 20px;
+  
+  }
+  
+  
+  a {
+  
+  }
+  
+  a:hover {
+    color: blue;
+  }
+  
+  input[type=email],[type=password] {
+    border:solid 1px rgba(102, 102, 102, 0.808);
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  
+  }
+  
+  #botao-cadastrar-se:hover {
+    
+    color: #FFF;
+  }
+  
+  #botao-cadastrar-se {
+    color: rgb(16, 159, 241); 
+    font-size: 20px;
+    padding: 10px 170px;
+    
+  } 
+  #botao-entrar:hover {
+    color: rgb(2, 19, 92);
+    border: solid 1px rgb(2, 19, 92);
+  }
+  #botao-entrar {
+    display: block;
+    text-align: center;
+    background-color: #3498db;
+    margin-top: 15px ;
+    
+  }
+  #block{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+  }
+  input[type=submit], input[type=button] {
+  color: #FFF;
+  font-size: 25px;
+  margin-top: 20px;
+  }
+  label, input {
+    font-size: 20px;
+    border-radius: 3px;
+    text-align: left;
+    display: block;
+    width: 100%;
+    height: 45px;
+    padding: 10px 1px;
+  }
+  .message {
+    margin-top: 0px;
+    font-size: 17px; 
+    
+  }
+  .success {
+    color: rgb(0, 185, 0);
+  }
+  
+  .error {
+    color: red;
+  }
+  button:disabled.true,
+  button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+  #res {
+    color: rgb(224, 14, 14);
+    font-size: 23px;
+    border-radius: 5px;
+    height: 40px;  
+    float: left;
+    margin-left: 70px;
+    width: 300px;
+    margin-top: 30px;
+  }
+  #link{
+    display: block;
+  }
+  #Sair {
+    background-color: rgb(218, 40, 40);
+    height: 25px;
+    width: 50px;
+    color: #FFF;
+    border-radius: 5px;
+    float: right;
+    margin-right: 15px;
+  }
