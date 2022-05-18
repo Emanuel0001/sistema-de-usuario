@@ -52,21 +52,20 @@ function App() {
             setPasswordErroMessage2("A senha deve ter no minimo 6 caracteres")
         }
     }
-    
+    /*
         const validaSenhas = (event) => {
-           
            var senha1= passwordConfirmacao 
            var senha2 =  password 
            if (senha1 === senha2) {
             setIsValidSenhas(true);
-            setValidaSenhasMessage("")
+            setValidaSenhasMessage("Senhas iguais")
     
            } else {
             setIsValidPasswordConfimacao(false)
-            setPasswordErroMessage2("Erro: Senhas não conferem")
+            setPasswordErroMessage2("")
         }
     
-        }
+        }*/
     const validateEmail = (event) => {
         const email = event.target.value;
         setEmail(event.target.value);
@@ -94,12 +93,12 @@ function App() {
     const submitForm = (event) => {
         event.preventDefault();
 
-        fetch('http://localhost:3001/', {
+        fetch('http://localhost:3001/cadastrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email: email, password: password })
+            body: JSON.stringify({ email: email, password: password, passwordConfirmacao: passwordConfirmacao })
 
         })
             .then((res) => res.json())
@@ -110,13 +109,15 @@ function App() {
         var res = window.document.getElementById('res')
         var texto = JSON.stringify(apiResponse)
         var texto2 = JSON.parse(texto)
+        var executa = 1;
+        if(executa === 1){ 
         if (texto2.message) {
             res.innerHTML = texto2.message
         } else {
             res.innerHTML = texto2.error
 
         }
-
+        }
     }
 
 
@@ -167,12 +168,9 @@ function App() {
                     {PasswordErroMessage2}
                 </div>
 
-                <div className={`message ${isValidSenhas ? 'success' : 'error'}`}>
-                    {ValidaSenhasMessage}
-                </div>
-
+                
+                <div id="res"></div>
                 <input
-                    onClick={validaSenhas}
                     type="submit"
                     id='botao-entrar'
                     value="CREATE ACCOUNT"
@@ -185,7 +183,7 @@ function App() {
                
 
             </form>
-            <div id="res"></div>
+            
 
 
 

@@ -8,6 +8,7 @@ import {
 import { useHistory } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import logo from './imagens/iconeLogin.png'
+
 function App() {
 
   let history = useHistory();
@@ -81,11 +82,12 @@ function App() {
       .then((json) => setApiResponse(json))
 
       .catch(e => console.log(" erro!!",))
+
     var res = window.document.getElementById('res')
     var texto = JSON.stringify(apiResponse)
     var texto2 = JSON.parse(texto)
-    if (texto2.message) {
 
+    if (texto2.message) {
 
       setCookie("user", "Logado", { path: "/", secure: "true" });
 
@@ -98,17 +100,17 @@ function App() {
     }
 
   }
-
-
-
+  
 
   return (
 
     <div id="login-container">
+
       <img src={logo} />
       <h1>Sign In</h1>
 
       <form onSubmit={submitForm}>
+        <i class="bi bi-envelope"></i>
         <input
           type="email"
           name='email'
@@ -117,9 +119,11 @@ function App() {
           value={email}
           onChange={validateEmail}>
         </input>
+
         <div className={`message ${isEmailValid ? 'success' : 'error'}`}>
           {EmailErroMessage}
         </div>
+
         <input
           type="password"
           name="password"
@@ -131,7 +135,7 @@ function App() {
         <div className={`message ${isValidPassword ? 'success' : 'error'}`}>
           {PasswordErroMessage}
         </div>
-
+        <div id="res"> </div>
         <input
           type="submit"
           id='botao-entrar'
@@ -140,7 +144,7 @@ function App() {
         ></input>
 
       </form>
-      <div id="res"> </div>
+
 
       <footer>
         <Link to='/cadastrar' id="link">Create Account</Link>

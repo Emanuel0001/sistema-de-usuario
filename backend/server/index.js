@@ -54,6 +54,37 @@ client.query(`select * from usuario WHERE email = $1 AND password = $2`,[email,p
 });
 
 
+app.post('/cadastrar', (req, res) => {
+   
+    console.log(req.body)
+    const email = req.body.email;
+    const password = req.body.password;
+    const passwordConfirmacao = req.body.passwordConfirmacao;
+
+if(password === passwordConfirmacao){   
+client.query(`INSERT INTO usuario (email,password) VALUES ($1, $2)`,[email,password])
+.then(results => {
+    const resultado = results
+   
+    console.log(resultado.rowCount )
+    
+    
+    if (resultado.rowCount === 1) {
+
+        return res.json({"message": "Usuario cadastrado com sucesso"});
+
+    } else {
+        return res.json({"error":"Erro ao cadastrar"});
+    }
+})
+.catch(e => console.log(" erro!!",)) 
+  
+} else {
+    return res.json({"error":"Erro: Senhas Diferentes"});
+
+}
+});
+
 app.listen(port, () => console.log(`Rodando na porta: ${port}!`))
 
 
