@@ -15,15 +15,16 @@ const DashBoard = () => {
     if (dadosCookie == 'Logado') {
     } else { history.push('/') }
   }, []);
-
+  const user = "email";
   const deletarCookie = () => {
     Cookies.remove('user');
     history.push('/');
   }
+
   return (
     <div>
-      <h1>BEM-VINDO <Link onClick={deletarCookie} id="Sair" >Sair</Link></h1>
-
+      <h1 id="cabecalhoDashboard">bem-vindo!  <Link onClick={deletarCookie} id="Sair" >Sair</Link></h1>
+       <span>{user}</span>
     </div>
 
   );

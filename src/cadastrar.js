@@ -5,6 +5,7 @@ import imagem from './imagens/iconeEditar.png'
 
 function App() {
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmacao, setPasswordConfimacao] = useState('');
 
@@ -13,16 +14,15 @@ function App() {
     const [isValidPasswordConfirmacao, setIsValidPasswordConfimacao] = useState(false);
     const [isValidPassword, setIsValidPassword] = useState(false);
     const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isNameValid, setIsNameValid] = useState(false);
 
     const [PasswordErroMessage2, setPasswordErroMessage2] = useState('');
     const [PasswordErroMessage, setPasswordErroMessage] = useState('');
     const [EmailErroMessage, setEmailErroMessage] = useState('');
-
-
-    const [isValidSenhas, setIsValidSenhas] = useState(false);
-    const [ValidaSenhasMessage, setValidaSenhasMessage] = useState('');
+    const [NameErroMessage, setNameErroMessage] = useState('');
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const nameRegex = /^[a-z ,.'-]+$/i
 
     const validatePassword = (event) => {
         const password = event.target.value;
@@ -52,20 +52,8 @@ function App() {
             setPasswordErroMessage2("A senha deve ter no minimo 6 caracteres")
         }
     }
-    /*
-        const validaSenhas = (event) => {
-           var senha1= passwordConfirmacao 
-           var senha2 =  password 
-           if (senha1 === senha2) {
-            setIsValidSenhas(true);
-            setValidaSenhasMessage("Senhas iguais")
-    
-           } else {
-            setIsValidPasswordConfimacao(false)
-            setPasswordErroMessage2("")
-        }
-    
-        }*/
+
+
     const validateEmail = (event) => {
         const email = event.target.value;
         setEmail(event.target.value);
@@ -80,43 +68,49 @@ function App() {
         }
     };
 
+    const validaNome = (event) => {
+        const name = event.target.value;
+        setName(event.target.value);
+    console.log(name)
+    if (nameRegex.test(name) && name.length > 2) {
+        setIsNameValid(true);
+        setNameErroMessage();
+
+    } else {
+        setIsNameValid(false);
+        setNameErroMessage('Somente letras!');
+    }
+
+    };
 
     const disabledButton = () => {
-
-        if (isEmailValid && isValidPassword) {
+        if (isEmailValid && isValidPassword && isNameValid && isValidPasswordConfirmacao) {
             return false;
 
         } else {
-            return true;
+             return true;
         }
     }
-    const submitForm = (event) => {
+    async function submitForm(event) {
         event.preventDefault();
 
-        fetch('http://localhost:3001/cadastrar', {
+        let response = await fetch('http://localhost:3001/cadastrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email: email, password: password, passwordConfirmacao: passwordConfirmacao })
+            body: JSON.stringify({ email: email, password: password, passwordConfirmacao: passwordConfirmacao, name: name })
 
         })
-            .then((res) => res.json())
-            .then((json) => setApiResponse(json))
-
-            .catch(e => console.log(" erro!!",))
-
-        var res = window.document.getElementById('res')
-        var texto = JSON.stringify(apiResponse)
-        var texto2 = JSON.parse(texto)
-        var executa = 1;
-        if(executa === 1){ 
-        if (texto2.message) {
-            res.innerHTML = texto2.message
+        const result = await response.json()
+        setApiResponse(result)
+        console.log(result)
+        var resultado = window.document.getElementById('resultado')
+        if (result.message) {
+            resultado.innerHTML = result.message
         } else {
-            res.innerHTML = texto2.error
+            resultado.innerHTML = result.error
 
-        }
         }
     }
 
@@ -127,10 +121,22 @@ function App() {
 
         <div id="login-container">
             <img src={imagem}></img>
-            <h1>Create Account</h1>
+            <h1 id='tituloCadastrar'>Create Account</h1>
 
             <form onSubmit={submitForm}>
                 
+                <input
+                    type="text"
+                    name='name'
+                    id='name'
+                    placeholder='First name'
+                    value={name}
+                    onChange={validaNome}>
+                </input>
+                <div className={`message ${isNameValid ? 'success' : 'error'}`}>
+                    {NameErroMessage}
+                </div>
+
                 <input
                     type="email"
                     name='email'
@@ -161,15 +167,15 @@ function App() {
                     placeholder='Confirm Password'
                     value={passwordConfirmacao}
                     onChange={validatePasswordConfimacao}
-                    
+
                 >
                 </input>
                 <div className={`message ${isValidPasswordConfirmacao ? 'success' : 'error'}`}>
                     {PasswordErroMessage2}
                 </div>
 
-                
-                <div id="res"></div>
+
+                <div id="resultado"></div>
                 <input
                     type="submit"
                     id='botao-entrar'
@@ -177,13 +183,13 @@ function App() {
                     disabled={disabledButton()}
                 ></input>
                 <footer>
-                  <Link to='/' id="link">Login Here</Link>   
+                    <Link to='/' id="link">Login Here</Link>
                 </footer>
-              
-               
+
+
 
             </form>
-            
+
 
 
 

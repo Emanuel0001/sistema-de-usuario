@@ -8,9 +8,22 @@
 }
 
 body {
-  background-color: rgba(122, 122, 122, 0.822);
+  background-color: rgba(172, 169, 169, 0.822);
 }
 
+#cabecalhoDashboard {
+  background-color: #3498db;
+  color: #FFF;
+  height: 50px;
+  border-bottom: 1px solid rgb(53, 53, 53);
+  text-align: center;
+  font-size: 35px;
+  font-weight: 800;
+  margin-top: 0px;
+  margin-bottom: 40px;
+
+  
+}
 h1 {
   text-align: center;
   font-size: 40px;
@@ -52,6 +65,7 @@ input[type=email],[type=password] {
   display: inline-block;
 
 }
+
 
 #botao-cadastrar-se:hover {
   background-color: #666666;
@@ -99,14 +113,14 @@ button[disabled]{
   background-color: #cccccc;
   color: #666666;
 }
-#res {
+#resultado {
   color: rgb(247, 97, 10);
   font-size: 20px;
   border-radius: 5px;
   display: inline-flex;
   margin-top: 1px;
   margin-bottom: 0px;
-  margin-left: 120px;
+  margin-left: 10px;
 }
 #link:hover{
   color: blue;

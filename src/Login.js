@@ -56,21 +56,10 @@ function App() {
       setEmailErroMessage('Digite um email Valido!');
     }
   };
-
-
-  const disabledButton = () => {
-
-    if (isEmailValid && isValidPassword) {
-      return false;
-
-    } else {
-      return true;
-    }
-  }
-  const submitForm = (event) => {
+  async function submitForm(event) {
     event.preventDefault();
 
-    fetch('http://localhost:3001/', {
+    let response = await fetch('http://localhost:3001/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -78,29 +67,33 @@ function App() {
       body: JSON.stringify({ email: email, password: password })
 
     })
-      .then((res) => res.json())
-      .then((json) => setApiResponse(json))
-
-      .catch(e => console.log(" erro!!",))
-
-    var res = window.document.getElementById('res')
-    var texto = JSON.stringify(apiResponse)
-    var texto2 = JSON.parse(texto)
-
-    if (texto2.message) {
+    const result = await response.json()
+    setApiResponse(result)
+    var resultado = window.document.getElementById('resultado')
+    if (result.message) {
 
       setCookie("user", "Logado", { path: "/", secure: "true" });
-
-      res.innerHTML = texto2.message
+      resultado.innerHTML = result.message
       history.push('/DashBoard')
 
     } else {
-      res.innerHTML = texto2.error
+      resultado.innerHTML = result.error
 
     }
 
   }
-  
+
+  const disabledButton = () => {
+    if (isEmailValid && isValidPassword) {
+   
+      return false;
+
+    } else {
+      return true;
+    }
+  }
+
+
 
   return (
 
@@ -135,7 +128,7 @@ function App() {
         <div className={`message ${isValidPassword ? 'success' : 'error'}`}>
           {PasswordErroMessage}
         </div>
-        <div id="res"> </div>
+        <div id="resultado"> </div>
         <input
           type="submit"
           id='botao-entrar'
