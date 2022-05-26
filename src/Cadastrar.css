@@ -128,12 +128,4 @@
   #link{
     display: block;
   }
-  #Sair {
-    background-color: rgb(218, 40, 40);
-    height: 25px;
-    width: 50px;
-    color: #FFF;
-    border-radius: 5px;
-    float: right;
-    margin-right: 15px;
-  }
+  

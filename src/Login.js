@@ -59,7 +59,7 @@ function App() {
   async function submitForm(event) {
     event.preventDefault();
 
-    let response = await fetch('http://localhost:3001/', {
+    let response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -68,13 +68,26 @@ function App() {
 
     })
     const result = await response.json()
+    const token = result.token
+
+    setCookie("x-access-token", token, { path: "/", secure: "true" });
+    console.log(result.token)
     setApiResponse(result)
     var resultado = window.document.getElementById('resultado')
+
     if (result.message) {
 
-      setCookie("user", "Logado", { path: "/", secure: "true" });
-      resultado.innerHTML = result.message
-      history.push('/DashBoard')
+      const resultadoCliente = await fetch('http://localhost:3001/client', {
+        method: 'GET',
+        headers: {
+          'x-access-token': token
+        }
+      })
+      if (resultadoCliente.status === 200) {
+        history.push("/Dashboard")
+      } else {
+        resultado.innerHTML = 'Token Inválido'
+      }
 
     } else {
       resultado.innerHTML = result.error
@@ -85,7 +98,7 @@ function App() {
 
   const disabledButton = () => {
     if (isEmailValid && isValidPassword) {
-   
+
       return false;
 
     } else {

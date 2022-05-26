@@ -10,7 +10,6 @@ import Cadastrar from './cadastrar'
 import DashBoard from "./DashBoard";
 import './App.css';
 
-
 const router = () => {
   return (
     <Router>
