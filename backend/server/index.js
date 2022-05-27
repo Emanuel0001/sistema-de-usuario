@@ -2,11 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv/config.js')
+
 
 const app = express();
-const port = 3001;
-
-
+const port = process.env.PORT || 3001;
 let user = [];
 
 app.use(cors());
@@ -17,18 +17,24 @@ app.use(bodyParser.json());
 const { Client } = require('pg');
 const { rows } = require('pg/lib/defaults');
 
+const USER_BD = process.env.USER_BD
+const HOST = process.env.HOST
+const DATABASE = process.env.DATABASE
+const PASSWORD_BD = process.env.PASSWORD_BD
+const PORT_CLIENT = process.env.PORT_CLIENT
 
 const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'banco_usuario',
-    password: '18066081',
-    port: 5432,
+    user: USER_BD,
+    host: HOST,
+    database: DATABASE,
+    password: PASSWORD_BD,
+    port: PORT_CLIENT,
 })
 client.connect()
 
 
-const SECRET = 'Seguro'
+const SECRET = process.env.SECRET
+
 const verifyJWT = (req, res, next) => {
     const token = req.headers['x-access-token'];
     jwt.verify(token, SECRET, (err, decoded) => {
