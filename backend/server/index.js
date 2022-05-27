@@ -6,7 +6,7 @@ const dotenv = require('dotenv/config.js')
 
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.DATABASE_URL || 3001;
 let user = [];
 
 app.use(cors());
