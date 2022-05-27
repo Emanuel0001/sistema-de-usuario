@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
             if (resultado.rowCount === 1) {
                 const token = jwt.sign({ userId: 1, email: email }, SECRET, { expiresIn: '1h' })               
                 
-                return res.json({ "message": "Sucesso", auth: true, token });
+                return res.json({ "message": "Sucesso", auth: true, token, email });
 
             } else {
                 return res.json({ "error": "Credencias Inválidas" });

@@ -178,6 +178,17 @@ button[disabled] {
   color: #666666;
 }
 
+#nomeUser {
+  color: #3498db;
+  font-size: 10px;
+  border-radius: 5px;
+  display: inline-flex;
+  margin-top: 1px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 20px;
+}
+
 #resultado {
   color: rgb(247, 97, 10);
   font-size: 20px;

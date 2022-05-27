@@ -13,10 +13,11 @@ const DashBoard = () => {
   let history = useHistory();
 
   useEffect(() => {
-
+    
     const token = Cookies.get("x-access-token")
-    console.log(token)
-
+    const userName = Cookies.get("userName")
+    var resultado = window.document.getElementById('nomeUser')
+    
     async function validaToken() {
     const resultadoCliente = await fetch('http://localhost:3001/client', {
       method: 'GET',
@@ -25,7 +26,7 @@ const DashBoard = () => {
       }
     })
     if (resultadoCliente.status === 200) {
-      
+      resultado.innerHTML = userName
     } else {
       history.push("/")
     }
@@ -34,6 +35,7 @@ const DashBoard = () => {
   } validaToken()  }, []);
 
   const deletarCookie = () => {
+    Cookies.remove('email');
     Cookies.remove('x-access-token');
     history.push('/');
   }
@@ -69,7 +71,7 @@ const DashBoard = () => {
         <p id="logoSite">Sistema de Usuário</p>
         <ul>
           <li><img id="imagemDoUsuario" src={logo} /></li>
-          <li><a>Emanuel</a></li>
+          <li><a  id="nomeUser"></a></li>
           <li><a><img id="menu" src={menu} /></a>
             <ul>
               <li><a onClick={submitForm} >Editar Perfil</a></li>

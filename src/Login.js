@@ -69,18 +69,20 @@ function App() {
     })
     const result = await response.json()
     const token = result.token
-
-    setCookie("x-access-token", token, { path: "/", secure: "true" });
+    const NomeUser = result.email
+    setCookie("x-access-token", token, { path: "/", secure: "true" })
+    setCookie("userName", NomeUser, { path: "/", secure: "true" })
     console.log(result.token)
     setApiResponse(result)
     var resultado = window.document.getElementById('resultado')
-
+    console.log("nome"+NomeUser)
     if (result.message) {
 
       const resultadoCliente = await fetch('http://localhost:3001/client', {
         method: 'GET',
         headers: {
-          'x-access-token': token
+          'x-access-token': token,
+          'email': NomeUser 
         }
       })
       if (resultadoCliente.status === 200) {
