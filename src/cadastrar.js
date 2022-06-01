@@ -94,7 +94,7 @@ function App() {
     async function submitForm(event) {
         event.preventDefault();
 
-        let response = await fetch('http://localhost:3001/cadastrar', {
+        let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

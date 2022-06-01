@@ -19,7 +19,7 @@ const DashBoard = () => {
     var resultado = window.document.getElementById('nomeUser')
     
     async function validaToken() {
-    const resultadoCliente = await fetch('http://localhost:3001/client', {
+    const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
       method: 'GET',
       headers: {
         'x-access-token': token
@@ -28,7 +28,7 @@ const DashBoard = () => {
     if (resultadoCliente.status === 200) {
       resultado.innerHTML = userName
     } else {
-      history.push("/")
+      history.push("https://sistema-de-usuario.herokuapp.com/")
     }
 
     console.log(resultadoCliente.status)
@@ -37,14 +37,14 @@ const DashBoard = () => {
   const deletarCookie = () => {
     Cookies.remove('email');
     Cookies.remove('x-access-token');
-    history.push('/');
+    history.push('https://sistema-de-usuario.herokuapp.com/');
   }
 
 
   async function submitForm(event) {
     event.preventDefault();
 
-    let response = await fetch('http://localhost:3001/get', {
+    let response = await fetch('https://test-backend-12.herokuapp.com/get', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -59,7 +59,7 @@ function App() {
   async function submitForm(event) {
     event.preventDefault();
 
-    let response = await fetch('http://localhost:3001/login', {
+    let response = await fetch('https://test-backend-12.herokuapp.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -71,14 +71,14 @@ function App() {
     const token = result.token
     const NomeUser = result.email
     setCookie("x-access-token", token, { path: "/", secure: "true" })
-    setCookie("userName", NomeUser, { path: "/", secure: "true" })
+    setCookie("userName", NomeUser   , { path: "/", secure: "true" })
     console.log(result.token)
     setApiResponse(result)
     var resultado = window.document.getElementById('resultado')
     console.log("nome"+NomeUser)
     if (result.message) {
 
-      const resultadoCliente = await fetch('http://localhost:3001/client', {
+      const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
         method: 'GET',
         headers: {
           'x-access-token': token,
@@ -86,7 +86,7 @@ function App() {
         }
       })
       if (resultadoCliente.status === 200) {
-        history.push("/Dashboard")
+        history.push("https://sistema-de-usuario.herokuapp.com/Dashboard")
       } else {
         resultado.innerHTML = 'Token Inválido'
       }
