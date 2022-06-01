@@ -86,7 +86,7 @@ function App() {
         }
       })
       if (resultadoCliente.status === 200) {
-        history.push("https://sistema-de-usuario.herokuapp.com/Dashboard")
+        history.push("/Dashboard")
       } else {
         resultado.innerHTML = 'Token Inválido'
       }

@@ -28,7 +28,7 @@ const DashBoard = () => {
     if (resultadoCliente.status === 200) {
       resultado.innerHTML = userName
     } else {
-      history.push("https://sistema-de-usuario.herokuapp.com/")
+      history.push("/")
     }
 
     console.log(resultadoCliente.status)
@@ -37,7 +37,7 @@ const DashBoard = () => {
   const deletarCookie = () => {
     Cookies.remove('email');
     Cookies.remove('x-access-token');
-    history.push('https://sistema-de-usuario.herokuapp.com/');
+    history.push('/');
   }
 
 
