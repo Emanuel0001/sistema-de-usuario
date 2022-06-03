@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Cadastrar.css';
 import imagem from './imagens/iconeEditar.png'
+import { useHistory } from "react-router-dom";
 
 function App() {
     const [email, setEmail] = useState('');
@@ -23,6 +24,7 @@ function App() {
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const nameRegex = /^[a-z ,.'-]+$/i
+    let history = useHistory();
 
     const validatePassword = (event) => {
         const password = event.target.value;
@@ -71,15 +73,15 @@ function App() {
     const validaNome = (event) => {
         const name = event.target.value;
         setName(event.target.value);
-    console.log(name)
-    if (nameRegex.test(name) && name.length > 2) {
-        setIsNameValid(true);
-        setNameErroMessage();
+        console.log(name)
+        if (nameRegex.test(name) && name.length > 2) {
+            setIsNameValid(true);
+            setNameErroMessage();
 
-    } else {
-        setIsNameValid(false);
-        setNameErroMessage('Somente letras!');
-    }
+        } else {
+            setIsNameValid(false);
+            setNameErroMessage('Somente letras!');
+        }
 
     };
 
@@ -88,7 +90,7 @@ function App() {
             return false;
 
         } else {
-             return true;
+            return true;
         }
     }
     async function submitForm(event) {
@@ -106,11 +108,15 @@ function App() {
         setApiResponse(result)
         console.log(result)
         var resultado = window.document.getElementById('resultado')
-        if (result.message) {
-            resultado.innerHTML = result.message
+        if (result.cadastrado) {
+            history.push('/')
         } else {
-            resultado.innerHTML = result.error
+            if (result.message) {
+                resultado.innerHTML = result.message
+            } else {
+                resultado.innerHTML = result.error
 
+            }
         }
     }
 
@@ -124,7 +130,7 @@ function App() {
             <h1 id='tituloCadastrar'>Create Account</h1>
 
             <form onSubmit={submitForm}>
-                
+
                 <input
                     type="text"
                     name='name'
@@ -189,10 +195,6 @@ function App() {
 
 
             </form>
-
-
-
-
 
         </div>
 

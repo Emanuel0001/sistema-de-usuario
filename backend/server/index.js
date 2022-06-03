@@ -61,8 +61,8 @@ app.post('/login', (req, res) => {
             console.log(resultado.rowCount)
 
             if (resultado.rowCount === 1) {
-                const token = jwt.sign({ userId: 1, email: email }, SECRET, { expiresIn: '1h' })               
-                
+                const token = jwt.sign({ userId: 1, email: email }, SECRET, { expiresIn: '1h' })
+
                 return res.json({ "message": "Sucesso", auth: true, token, email });
 
             } else {
@@ -82,30 +82,43 @@ app.post('/cadastrar', (req, res) => {
     const passwordConfirmacao = req.body.passwordConfirmacao;
     const name = req.body.name;
 
-    if (password === passwordConfirmacao) {
-        client.query(`INSERT INTO usuario (email,password,name) VALUES ($1, $2, $3)`, [email, password, name])
-            .then(results => {
-                const resultado = results
 
-                console.log(resultado.rowCount)
+    client.query(`select * from usuario WHERE email = $1 AND password = $2`, [email, password])
+        .then(results => {
+            const resultad = results
+            console.log(resultad.rowCount)
+    
+            if (resultad.rowCount === 1) {
+             
+                res.json({ "error": "E-mail já possui cadastro" })
+            
+            } else {
+                
+                if (password === passwordConfirmacao) {
+                    client.query(`INSERT INTO usuario (email,password,name) VALUES ($1, $2, $3)`, [email, password, name])
+                        .then(results => {
+                            const resultado = results
 
-                if (resultado.rowCount === 1) {
+                            console.log(resultado.rowCount)
+
+                            if (resultado.rowCount === 1) {
 
 
-                    return res.json({ "message": "Usuario cadastrado com sucesso" });
+                                return res.json({ "cadastrado": "Usuario cadastrado com sucesso" });
+
+                            } else {
+                                return res.json({ "error": "Erro ao cadastrar" });
+                            }
+                        })
 
                 } else {
-                    return res.json({ "error": "Erro ao cadastrar" });
+                    return res.json({ "error": "Erro: Senhas Diferentes" });
+
                 }
-            })
-            .catch(e => res.json({ "error": "E-mail já possui cadastro" }))
 
-    } else {
-        return res.json({ "error": "Erro: Senhas Diferentes" });
-
-    }
+            }
+        });
 });
-
 
 app.listen(port, () => console.log(`Rodando na porta: ${port}!`))
 
