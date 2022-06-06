@@ -74,7 +74,7 @@ function App() {
         const name = event.target.value;
         setName(event.target.value);
         console.log(name)
-        if (nameRegex.test(name) && name.length > 2) {
+        if (nameRegex.test(name)) {
             setIsNameValid(true);
             setNameErroMessage();
 
@@ -95,8 +95,11 @@ function App() {
     }
     async function submitForm(event) {
         event.preventDefault();
-
-        let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
+        var div = document.getElementById('load');
+           
+            
+        
+        let response = await fetch('http://localhost:3001/cadastrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -104,28 +107,40 @@ function App() {
             body: JSON.stringify({ email: email, password: password, passwordConfirmacao: passwordConfirmacao, name: name })
 
         })
+        div.style.display = 'inline-block';
         const result = await response.json()
         setApiResponse(result)
         console.log(result)
         var resultado = window.document.getElementById('resultado')
         if (result.cadastrado) {
+            
+            alert("Cadastrado com sucesso!");
             history.push('/')
         } else {
-            if (result.message) {
-                resultado.innerHTML = result.message
-            } else {
-                resultado.innerHTML = result.error
-
-            }
+            let i = 0;
+            while(i < 150000){
+                i++;
+                if(i  < 150000){
+                    div.style.display = 'none';
+                   
+                      continue;
+                }
+                 resultado.innerHTML = result.error
+                     }
         }
     }
 
-
+   const carregando = () => {
+   
+    var carregando = 0   
+    if(carregando === 0){
+            }
+   }
 
 
     return (
 
-        <div id="login-container">
+        <div id="cadastrar-container">
             <img src={imagem}></img>
             <h1 id='tituloCadastrar'>Create Account</h1>
 
@@ -180,7 +195,7 @@ function App() {
                     {PasswordErroMessage2}
                 </div>
 
-
+                <div id='load'></div>
                 <div id="resultado"></div>
                 <input
                     type="submit"

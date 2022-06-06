@@ -83,7 +83,7 @@ app.post('/cadastrar', (req, res) => {
     const name = req.body.name;
 
 
-    client.query(`select * from usuario WHERE email = $1 AND password = $2`, [email, password])
+    client.query(`select * from usuario WHERE email = $1`, [email])
         .then(results => {
             const resultad = results
             console.log(resultad.rowCount)
