@@ -224,13 +224,14 @@ button[disabled] {
 }
 
 #resultado {
-  color: rgb(247, 97, 10);
+  color: rgb(247, 10, 10);
+  background-color: #ffd82c;
   font-size: 20px;
   border-radius: 5px;
   display: block;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 0px;
-  margin-left: 10px;
+  
 }
 
 #link:hover {

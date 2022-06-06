@@ -95,10 +95,10 @@ function App() {
     }
     async function submitForm(event) {
         event.preventDefault();
+
         var div = document.getElementById('load');
-           
+        var divResultado = document.getElementById('resultado');
             
-        
         let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
             method: 'POST',
             headers: {
@@ -107,10 +107,11 @@ function App() {
             body: JSON.stringify({ email: email, password: password, passwordConfirmacao: passwordConfirmacao, name: name })
 
         })
+
         div.style.display = 'inline-block';
+        
         const result = await response.json()
         setApiResponse(result)
-        console.log(result)
         var resultado = window.document.getElementById('resultado')
         if (result.cadastrado) {
             
@@ -120,22 +121,18 @@ function App() {
             let i = 0;
             while(i < 1250000){
                 i++;
+                
                 if(i  < 1250000){
+                    
                     div.style.display = 'none';
-                   
+                  
                       continue;
-                }
+                }   
+                
                  resultado.innerHTML = result.error
                      }
         }
     }
-
-   const carregando = () => {
-   
-    var carregando = 0   
-    if(carregando === 0){
-            }
-   }
 
 
     return (
