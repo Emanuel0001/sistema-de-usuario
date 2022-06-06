@@ -118,9 +118,9 @@ function App() {
             history.push('/')
         } else {
             let i = 0;
-            while(i < 150000){
+            while(i < 1250000){
                 i++;
-                if(i  < 150000){
+                if(i  <= 1250000){
                     div.style.display = 'none';
                    
                       continue;
