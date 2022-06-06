@@ -120,7 +120,7 @@ function App() {
             let i = 0;
             while(i < 1250000){
                 i++;
-                if(i  <= 1250000){
+                if(i  < 1250000){
                     div.style.display = 'none';
                    
                       continue;
