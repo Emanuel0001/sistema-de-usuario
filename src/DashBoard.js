@@ -12,27 +12,28 @@ import menu from './imagens/iconeMenu.png'
 const DashBoard = () => {
   let history = useHistory();
 
-    var userName = Cookies.get("userName")
+  var userName = Cookies.get("userName")
   useEffect(() => {
-    
+
     const token = Cookies.get("x-access-token")
     var resultado = window.document.getElementById('nomeUser')
-    
-    async function validaToken() {
-    const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
-      method: 'GET',
-      headers: {
-        'x-access-token': token
-      }
-    })
-    if (resultadoCliente.status === 200) {
-      resultado.innerHTML = userName
-    } else {
-      history.push("/")
-    }
 
-    console.log(resultadoCliente.status)
-  } validaToken()  }, []);
+    async function validaToken() {
+      const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
+        method: 'GET',
+        headers: {
+          'x-access-token': token
+        }
+      })
+      if (resultadoCliente.status === 200) {
+        resultado.innerHTML = userName
+      } else {
+        history.push("/")
+      }
+
+      console.log(resultadoCliente.status)
+    } validaToken()
+  }, []);
 
   const deletarCookie = () => {
     Cookies.remove('email');
@@ -63,7 +64,6 @@ const DashBoard = () => {
     }
   }
 
-var italo = "hitallo"
   return (
     <div>
 

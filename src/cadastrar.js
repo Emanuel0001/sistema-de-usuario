@@ -98,8 +98,8 @@ function App() {
 
         var div = document.getElementById('load');
         var divResultado = document.getElementById('resultado');
-            
-        let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
+
+        let response = await fetch('http://localhost:3001/cadastrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -109,28 +109,36 @@ function App() {
         })
 
         div.style.display = 'inline-block';
-        
+
         const result = await response.json()
         setApiResponse(result)
         var resultado = window.document.getElementById('resultado')
+
         if (result.cadastrado) {
-            
             alert("Cadastrado com sucesso!");
             history.push('/')
         } else {
+            function delay(n) {
+                return new Promise(function (resolve) {
+                    setTimeout(resolve, n * 1000);
+                });
+            }
             let i = 0;
-            while(i < 1250000){
+            divResultado.style.display = 'none';
+            await delay(5);
+            while (i <= 1) {
                 i++;
-                
-                if(i  < 1250000){
-                    
+
+                if (i == 1) {
+
                     div.style.display = 'none';
-                  
-                      continue;
-                }   
-                
-                 resultado.innerHTML = result.error
-                     }
+                    divResultado.style.display = '';
+                    continue;
+                }
+
+                resultado.innerHTML = result.error
+
+            }
         }
     }
 

@@ -59,6 +59,9 @@ function App() {
   async function submitForm(event) {
     event.preventDefault();
 
+    var div = document.getElementById('load');
+    var divResultado = document.getElementById('resultado');
+
     let response = await fetch('https://test-backend-12.herokuapp.com/login', {
       method: 'POST',
       headers: {
@@ -67,24 +70,29 @@ function App() {
       body: JSON.stringify({ email: email, password: password })
 
     })
+
     const result = await response.json()
     const token = result.token
     const NomeUser = result.email
+    div.style.display = 'inline-block';
+
     setCookie("x-access-token", token, { path: "/", secure: "true" })
-    setCookie("userName", NomeUser   , { path: "/", secure: "true" })
+    setCookie("userName", NomeUser, { path: "/", secure: "true" })
     console.log(result.token)
     setApiResponse(result)
     var resultado = window.document.getElementById('resultado')
-    console.log("nome"+NomeUser)
+    console.log("nome" + NomeUser)
     if (result.message) {
 
       const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
         method: 'GET',
         headers: {
           'x-access-token': token,
-          'email': NomeUser 
+          'email': NomeUser
         }
       })
+
+
       if (resultadoCliente.status === 200) {
         history.push("/Dashboard")
       } else {
@@ -92,7 +100,27 @@ function App() {
       }
 
     } else {
-      resultado.innerHTML = result.error
+      function delay(n) {
+        return new Promise(function (resolve) {
+          setTimeout(resolve, n * 1000);
+        });
+      }
+      let i = 0;
+      divResultado.style.display = 'none';
+      await delay(5);
+      while (i <= 1) {
+        i++;
+
+        if (i == 1) {
+
+          div.style.display = 'none';
+          divResultado.style.display = '';
+          continue;
+        }
+
+        resultado.innerHTML = result.error
+
+      }
 
     }
 
@@ -143,6 +171,7 @@ function App() {
         <div className={`message ${isValidPassword ? 'success' : 'error'}`}>
           {PasswordErroMessage}
         </div>
+        <div id='load'></div>
         <div id="resultado"> </div>
         <input
           type="submit"

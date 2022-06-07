@@ -85,13 +85,13 @@ app.post('/cadastrar', (req, res) => {
 
     client.query(`select * from usuario WHERE email = $1`, [email])
         .then(results => {
-            const resultad = results
-            console.log(resultad.rowCount)
-    
-            if (resultad.rowCount === 1) {
+            const resultadoQuery = results
+           
+           console.log(resultadoQuery.rowCount)
+            if (resultadoQuery.rowCount === 1) {
              
                 res.json({ "error": "E-mail já possui cadastro" })
-            
+                
             } else {
                 
                 if (password === passwordConfirmacao) {
