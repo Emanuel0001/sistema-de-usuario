@@ -102,6 +102,7 @@ function App() {
 
         var div = document.getElementById('load');
         var divResultado = document.getElementById('resultado');
+        document.getElementById('botao-entrar').disabled = true;
 
         let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
             method: 'POST',
@@ -133,7 +134,7 @@ function App() {
                 i++;
 
                 if (i == 1) {
-
+                    document.getElementById('botao-entrar').disabled = false;
                     div.style.display = 'none';
                     divResultado.style.display = '';
                     continue;

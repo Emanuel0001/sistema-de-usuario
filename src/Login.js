@@ -20,18 +20,17 @@ function App() {
 
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
-
+  
   const [PasswordErroMessage, setPasswordErroMessage] = useState('');
   const [EmailErroMessage, setEmailErroMessage] = useState('');
 
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
-
   const validatePassword = (event) => {
     const password = event.target.value;
     setPassword(event.target.value)
-
+  
     if (password.length >= 6) {
       setIsValidPassword(true);
       setPasswordErroMessage("")
@@ -41,12 +40,13 @@ function App() {
       setIsValidPassword(false)
       setPasswordErroMessage("A senha deve ter no minimo 6 caracteres")
     }
+
   }
 
   const validateEmail = (event) => {
     const email = event.target.value;
     setEmail(event.target.value);
-
+   
     if (emailRegex.test(email)) {
       setIsEmailValid(true);
       setEmailErroMessage('');
@@ -59,7 +59,8 @@ function App() {
   async function submitForm(event) {
     event.preventDefault();
 
- console.log("CLICOU!!!!!")
+    console.log("CLICOU!!!!!")
+    document.getElementById('botao-entrar').disabled = true;
     var div = document.getElementById('load');
     var divResultado = document.getElementById('resultado');
 
@@ -79,10 +80,10 @@ function App() {
 
     setCookie("x-access-token", token, { path: "/", secure: "true" })
     setCookie("userName", NomeUser, { path: "/", secure: "true" })
-    console.log(result.token)
+
     setApiResponse(result)
     var resultado = window.document.getElementById('resultado')
-    console.log("nome" + NomeUser)
+
     if (result.message) {
 
       const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
@@ -104,7 +105,7 @@ function App() {
       function delay(n) {
         return new Promise(function (resolve) {
           setTimeout(resolve, n * 1000);
-          
+         
         });
       }
       let i = 0;
@@ -115,7 +116,7 @@ function App() {
         i++;
        
         if (i == 1) {
-          
+          document.getElementById('botao-entrar').disabled = false;
           div.style.display = 'none';
           divResultado.style.display = '';
           continue;
@@ -130,15 +131,15 @@ function App() {
   }
 
   const disabledButton = () => {
-    
     if (isEmailValid && isValidPassword) {
-
+      
       return false;
-
-    } else {
+    } 
+     else {
+     
       return true;
-    }
     
+    }
   }
 
 
