@@ -243,12 +243,11 @@ button[disabled] {
 
 #resultado {
   color: rgb(247, 10, 10);
-  background-color: #ffd82c;
   font-size: 20px;
   border-radius: 5px;
   display: block;
-  margin-top: 20px;
-  
+  margin-top: 25px;
+  font-weight: 700;
   
 }
 

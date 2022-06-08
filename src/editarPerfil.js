@@ -20,20 +20,7 @@ const editarPerfil = () => {
   
       <h1 id='tituloCadastrar'>Edit Account</h1>
       <Link to='/Dashboard' >voltar</Link>
-<Button onChange >Open Modal</Button>
-     <Modal show={ativamodal()}>
-      <Modal.Header>
-        <h5 >Cadastrado com sucesso</h5>
-      </Modal.Header>
-      <Modal.Body>
-        Bem vindo!
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={fecharModal()}>
-         Fazer Login
-        </Button>
-      </Modal.Footer>
-     </Modal>
+
        </div>
 
   );
