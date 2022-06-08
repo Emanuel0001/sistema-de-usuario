@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import Login from './Login'
 import Cadastrar from './cadastrar'
 import DashBoard from "./DashBoard";
+import editarPerfil from "./editarPerfil";
 import './App.css';
 
 const router = () => {
@@ -17,6 +18,7 @@ const router = () => {
       <Switch>
         <Route exact path='/' component={Login} />
         <Route exact path='/cadastrar' component={Cadastrar} />
+        <Route exact path='/editarPerfil' component={editarPerfil}></Route>
         <Route exact path='/DashBoard' component={DashBoard}></Route>
       </Switch>
 

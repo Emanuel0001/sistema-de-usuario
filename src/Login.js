@@ -59,6 +59,7 @@ function App() {
   async function submitForm(event) {
     event.preventDefault();
 
+ console.log("CLICOU!!!!!")
     var div = document.getElementById('load');
     var divResultado = document.getElementById('resultado');
 
@@ -103,16 +104,18 @@ function App() {
       function delay(n) {
         return new Promise(function (resolve) {
           setTimeout(resolve, n * 1000);
+          
         });
       }
       let i = 0;
       divResultado.style.display = 'none';
+      
       await delay(5);
       while (i <= 1) {
         i++;
-
+       
         if (i == 1) {
-
+          
           div.style.display = 'none';
           divResultado.style.display = '';
           continue;
@@ -127,6 +130,7 @@ function App() {
   }
 
   const disabledButton = () => {
+    
     if (isEmailValid && isValidPassword) {
 
       return false;
@@ -134,6 +138,7 @@ function App() {
     } else {
       return true;
     }
+    
   }
 
 

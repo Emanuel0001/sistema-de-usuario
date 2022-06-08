@@ -45,23 +45,6 @@ const DashBoard = () => {
   async function submitForm(event) {
     event.preventDefault();
 
-    let response = await fetch('https://test-backend-12.herokuapp.com/get', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({})
-
-    })
-    const result = await response.json()
-    console.log(result)
-    var resultado = window.document.getElementById('resultado')
-    if (result.message) {
-      resultado.innerHTML = result.message
-    } else {
-      resultado.innerHTML = result.error
-
-    }
   }
 
   return (
@@ -74,7 +57,7 @@ const DashBoard = () => {
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={menu} /></a>
             <ul>
-              <li><a onClick={submitForm} >Editar Perfil</a></li>
+              <li> <Link to='/editarPerfil' id="editarPerfil">Editar Perfil</Link></li>
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
           </li>

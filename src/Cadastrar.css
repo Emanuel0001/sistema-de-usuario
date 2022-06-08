@@ -72,8 +72,9 @@
     
   } 
   #botao-entrar:hover {
-    color: rgb(2, 19, 92);
-    border: solid 1px rgb(2, 19, 92);
+    color: rgb(2, 14, 68);
+    border: solid 1px rgb(1, 13, 63);
+    background-color: #007fb9;
   }
   #botao-entrar {
     display: block;

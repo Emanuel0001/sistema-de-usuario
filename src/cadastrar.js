@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Cadastrar.css';
 import imagem from './imagens/iconeEditar.png'
 import { useHistory } from "react-router-dom";
+import { Button, Modal } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     const [email, setEmail] = useState('');
@@ -16,6 +18,8 @@ function App() {
     const [isValidPassword, setIsValidPassword] = useState(false);
     const [isEmailValid, setIsEmailValid] = useState(false);
     const [isNameValid, setIsNameValid] = useState(false);
+
+    const [isValidCadastro, setIsValidCadastro] = useState(false);
 
     const [PasswordErroMessage2, setPasswordErroMessage2] = useState('');
     const [PasswordErroMessage, setPasswordErroMessage] = useState('');
@@ -98,7 +102,7 @@ function App() {
 
         var div = document.getElementById('load');
         var divResultado = document.getElementById('resultado');
-            
+
         let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
             method: 'POST',
             headers: {
@@ -109,40 +113,43 @@ function App() {
         })
 
         div.style.display = 'inline-block';
-        
+
         const result = await response.json()
         setApiResponse(result)
         var resultado = window.document.getElementById('resultado')
-      
-        if (result.cadastrado) {  
-            alert("Cadastrado com sucesso!");
-            history.push('/')
+
+        if (result.cadastrado) {
+            setIsValidCadastro(true);
         } else {
-            function delay(n){
-                return new Promise(function(resolve){
-                    setTimeout(resolve,n*1000);
+            function delay(n) {
+                return new Promise(function (resolve) {
+                    setTimeout(resolve, n * 1000);
                 });
             }
             let i = 0;
             divResultado.style.display = 'none';
             await delay(5);
-            while(i <= 1){
+            while (i <= 1) {
                 i++;
-                
-                if(i == 1){
-                    
+
+                if (i == 1) {
+
                     div.style.display = 'none';
                     divResultado.style.display = '';
-                      continue;
-                }   
-               
-                  resultado.innerHTML = result.error
-               
-                     }
+                    continue;
+                }
+
+                resultado.innerHTML = result.error
+
+            }
         }
     }
 
 
+
+    function fecharModal() {
+        history.push('/')
+    }
     return (
 
         <div id="cadastrar-container">
@@ -208,11 +215,25 @@ function App() {
                     value="CREATE ACCOUNT"
                     disabled={disabledButton()}
                 ></input>
+
+
                 <footer>
                     <Link to='/' id="link">Login Here</Link>
                 </footer>
 
-
+                <Modal show={isValidCadastro}>
+                    <Modal.Header>
+                        <h5 >Cadastrado efetuado com sucesso!!!</h5>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Você será redirecionado para tela login.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={fecharModal}>
+                            Fazer Login
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
             </form>
 
