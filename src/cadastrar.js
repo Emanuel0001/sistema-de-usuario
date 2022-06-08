@@ -223,7 +223,7 @@ function App() {
 
                 <Modal show={isValidCadastro}>
                     <Modal.Header>
-                        <h5 >Cadastrado efetuado com sucesso!!!</h5>
+                        <h5 >Cadastrado com sucesso!!!</h5>
                     </Modal.Header>
                     <Modal.Body>
                         Você será redirecionado para tela login.
