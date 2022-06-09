@@ -97,7 +97,7 @@ function App() {
             return true;
         }
     }
-    
+
     const div = document.getElementById('load');
     const divResultado = document.getElementById('resultado');
 
@@ -158,6 +158,9 @@ function App() {
     const fecharModalPermanecer = () => {
         setIsValidCadastro(false);
         div.style.display = 'none';
+        var resultado = window.document.getElementById('resultado')
+        resultado.style.color = "green"
+        resultado.innerHTML = 'Usuário cadastrado'
         divResultado.style.display = '';
     }
 
