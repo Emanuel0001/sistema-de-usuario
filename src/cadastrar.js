@@ -238,7 +238,7 @@ function App() {
                     <Link to='/' id="link">Login Here</Link>
                 </footer>
 
-                <Modal show={isValidCadastro}>
+                <Modal show={true}>
                     <Modal.Header closeButton onClick={fecharModalPermanecer}>
                         Cadastrado com sucesso!
                     </Modal.Header>
