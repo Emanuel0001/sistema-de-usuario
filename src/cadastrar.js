@@ -97,11 +97,14 @@ function App() {
             return true;
         }
     }
+    
+    const div = document.getElementById('load');
+    const divResultado = document.getElementById('resultado');
+
     async function submitForm(event) {
         event.preventDefault();
 
-        var div = document.getElementById('load');
-        var divResultado = document.getElementById('resultado');
+        
         document.getElementById('botao-entrar').disabled = true;
 
         let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
@@ -152,7 +155,11 @@ function App() {
         }
     }
 
-
+    const fecharModalPermanecer = () => {
+        setIsValidCadastro(false);
+        div.style.display = 'none';
+        divResultado.style.display = '';
+    }
 
     function fecharModal() {
         history.push('/')
@@ -229,7 +236,7 @@ function App() {
                 </footer>
 
                 <Modal show={isValidCadastro}>
-                    <Modal.Header>
+                    <Modal.Header closeButton onClick={fecharModalPermanecer}>
                         Cadastrado com sucesso!
                     </Modal.Header>
                     <Modal.Body>
