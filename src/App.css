@@ -116,26 +116,26 @@ ul {
 }
 
 ul li {
+  margin-right: 0px;
   float: left;
   margin-top: 10px;
 }
 
 ul li a {
-  width: 110px;
+  width: 140px;
   color: rgb(32, 132, 214);
   display: block;
   text-decoration: none;
   font-size: 15px;
   text-align: center;
   padding: 12px;
-  border-radius: 10px;
   font-family: sans-serif;
   font-weight: bold;
 }
 
 ul li ul {
+  
   background-color: rgb(255, 255, 255);
-  border-radius: 5px;
 }
 
 ul li ul li {
@@ -143,12 +143,12 @@ ul li ul li {
 }
 
 ul li ul {
+  
   display: none;
 }
 
 ul li:hover ul {
   display: block;
-  border-radius: 5px;
 }
 
 #logoSite {
@@ -267,6 +267,7 @@ footer {
 #Sair {
   background-color: rgb(218, 40, 40);
   color: #FFF;
+  cursor: pointer;
   border-radius: 0;
 }
 

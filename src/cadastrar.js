@@ -247,7 +247,7 @@ function App() {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button id="btn-primary" onClick={fecharModal}>
-                            Fazer Login
+                            Login
                         </Button>
                     </Modal.Footer>
                 </Modal>

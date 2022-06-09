@@ -51,13 +51,15 @@ const DashBoard = () => {
     <div>
 
       <nav className="menuNav">
-        <p id="logoSite">Dashboard</p>
+        <p id="logoSite">DASHBOARD</p>
         <ul>
           <li><img id="imagemDoUsuario" src={logo} /></li>
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={menu} /></a>
             <ul>
               <li> <Link to='/editarPerfil' id="editarPerfil">Editar Perfil</Link></li>
+              <li><a></a></li>
+             
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
           </li>
