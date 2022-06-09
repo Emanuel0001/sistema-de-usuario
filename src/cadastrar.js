@@ -77,7 +77,7 @@ function App() {
     const validaNome = (event) => {
         const name = event.target.value;
         setName(event.target.value);
-        console.log(name)
+
         if (nameRegex.test(name)) {
             setIsNameValid(true);
             setNameErroMessage();
@@ -119,14 +119,20 @@ function App() {
         setApiResponse(result)
         var resultado = window.document.getElementById('resultado')
 
+        function delay(n) {
+            return new Promise(function (resolve) {
+                setTimeout(resolve, n * 1000);
+                
+            });
+        }
+
         if (result.cadastrado) {
+            divResultado.style.display = 'none';
+            await delay(5);
             setIsValidCadastro(true);
+            
         } else {
-            function delay(n) {
-                return new Promise(function (resolve) {
-                    setTimeout(resolve, n * 1000);
-                });
-            }
+           
             let i = 0;
             divResultado.style.display = 'none';
             await delay(5);
@@ -224,13 +230,13 @@ function App() {
 
                 <Modal show={isValidCadastro}>
                     <Modal.Header>
-                        <h5 >Cadastrado com sucesso!!!</h5>
+                        Cadastrado com sucesso!
                     </Modal.Header>
                     <Modal.Body>
                         Você será redirecionado para tela login.
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={fecharModal}>
+                        <Button id="btn-primary" onClick={fecharModal}>
                             Fazer Login
                         </Button>
                     </Modal.Footer>
