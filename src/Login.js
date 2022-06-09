@@ -85,8 +85,9 @@ function App() {
     var resultado = window.document.getElementById('resultado')
 
     if (result.message) {
-
-      const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
+     divResultado.style.display = 'none';
+     
+     const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
         method: 'GET',
         headers: {
           'x-access-token': token,
@@ -96,6 +97,7 @@ function App() {
 
 
       if (resultadoCliente.status === 200) {
+      
         history.push("/Dashboard")
       } else {
         resultado.innerHTML = 'Token Inválido'
