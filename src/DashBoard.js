@@ -1,18 +1,24 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import './App.css';
 import { useCookies } from 'react-cookie';
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
 import logo from './imagens/iconeLogin.png'
 import menu from './imagens/iconeMenu.png'
-
-
+import uploadImg from './imagens/uploadImg.png'
+import { Button, Modal } from 'react-bootstrap'
 
 const DashBoard = () => {
+
+  const [isValidCadastro, setIsValidCadastro] = useState(false);
+  const [isBase64Code, setIsBase64Code] = useState('')
+  const [isImagem, setIsImagem] = useState('')
   let history = useHistory();
 
   var userName = Cookies.get("userName")
+
+
   useEffect(() => {
 
     const token = Cookies.get("x-access-token")
@@ -26,12 +32,10 @@ const DashBoard = () => {
         }
       })
       if (resultadoCliente.status === 200) {
-        resultado.innerHTML = userName
+
       } else {
         history.push("/")
       }
-
-      console.log(resultadoCliente.status)
     } validaToken()
   }, []);
 
@@ -39,25 +43,104 @@ const DashBoard = () => {
     Cookies.remove('email');
     Cookies.remove('x-access-token');
     history.push('/');
+  
   }
-
 
   async function submitForm(event) {
     event.preventDefault();
 
   }
+  const abrirEditarPerfil = () => {
+    setIsValidCadastro(true);
+  }
 
+  const fecharModal = ( ) => {
+    setIsValidCadastro(false);
+  }
+
+   async function salvarEFecharModal( ) {
+
+      let email = Cookies.get("userName")
+      var resultadoImg = document.getElementById('resultadoSalvarImg');
+      
+      let response = await fetch('http://localhost:3001/salvarFoto', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: email, code64: isBase64Code})
+
+      })
+
+
+      const result = await response.json()
+      console.log(result.message)
+      console.log(result.error)
+
+      if(result.message){
+        resultadoImg.innerHTML = result.message
+      } else {
+        resultadoImg.innerHTML = result.error
+        
+      }
+
+      
+  }
+
+  const onChange = e => {
+    const files = e.target.files;
+    const file = files[0];
+    getBase64(file);
+  };
+ 
+  const onLoad = fileString => {
+    setIsBase64Code(fileString)
+  };
+ 
+  const getBase64 = file => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad(reader.result);
+    };
+  }
+  const imprimiImagem  = () =>{
+    var image = new Image();
+
+  }
+  imprimiImagem()
+
+
+  async function pegaImagem ( ) {
+
+    let email = Cookies.get("userName")
+    var resultadoImg = document.getElementById('resultadoSalvarImg');
+    
+    let response = await fetch('http://localhost:3001/imagem', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email})
+
+    })
+   
+
+    const result = await response.json()
+    setIsImagem(result.message.id_cod_img)
+  }
+  pegaImagem()
   return (
     <div>
 
       <nav className="menuNav">
         <p id="logoSite">DASHBOARD</p>
         <ul>
-          <li><img id="imagemDoUsuario" src={logo} /></li>
+          <li><img  onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || logo }/></li>
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={menu} /></a>
             <ul>
-              <li> <Link to='/editarPerfil' id="editarPerfil">Editar Perfil</Link></li>
+              <li> <Link onClick={abrirEditarPerfil} id="editarPerfil">Adicionar Foto</Link></li>
               <li><a></a></li>
              
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
@@ -65,6 +148,37 @@ const DashBoard = () => {
           </li>
         </ul>
       </nav>
+
+
+      <Modal id="modal-header-adcionar-foto" show={isValidCadastro} >
+        <Modal.Header id="modal-header-adcionar-foto" closeButton onClick={fecharModal}>
+          Adicionar foto
+        </Modal.Header>
+        <Modal.Body id="modal-body-adciona-foto">
+          <div> 
+            <input type="file" id="modal-input-file" onChange={onChange}></input>
+            <label for="modal-input-file" >
+              <img 
+              id="uploadImg"
+              width='100'
+              height="100"
+              src={ isBase64Code || uploadImg}>
+              </img>
+            </label>
+         
+        </div>  
+        
+          Click para enviar 
+         <div id="resultadoSalvarImg"></div>
+          </Modal.Body>
+        <Modal.Footer>
+
+          <Button id="btn-primary" onClick={salvarEFecharModal} >
+            Salvar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
 
   );

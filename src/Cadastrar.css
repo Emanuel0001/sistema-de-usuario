@@ -1,16 +1,5 @@
 /* geral */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    color: rgb(12, 34, 73);
-    font-family: 'Times New Roman', Times, serif;
-    border: none;
-  }
-  
-  body {
-    background-color: rgb(124, 126, 129);
-  }
+
   
   #tituloCadastrar {
     text-align: center;

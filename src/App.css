@@ -4,25 +4,28 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Times New Roman', Times, serif;
-  
+
 }
 
 body {
   background-color: rgba(172, 169, 169, 0.822);
 }
 
-@media screen and (max-width: 780px){
- 
-#imagemDoUsuario {
-display: none;
+@media screen and (max-width: 780px) {
+
+  #imagemDoUsuario {
+    display: none;
+  }
+
+  #nameUser {
+    display: none;
+  }
+
+  #logoSite {
+    text-align: center;
+  }
 }
-#nameUser{
-display: none;
-}
-#logoSite{
-  text-align: center;
-}
-}
+
 #menu {
   margin-left: 0px;
   width: 32px;
@@ -79,6 +82,7 @@ h1 {
   margin-top: 5vh;
   text-align: center;
 }
+
 form {
   margin-top: 30px;
   margin-bottom: 0px;
@@ -134,7 +138,7 @@ ul li a {
 }
 
 ul li ul {
-  
+
   background-color: rgb(255, 255, 255);
 }
 
@@ -143,7 +147,7 @@ ul li ul li {
 }
 
 ul li ul {
-  
+
   display: none;
 }
 
@@ -189,15 +193,17 @@ input[type=submit],
 input[type=button] {
   color: #FFF;
   font-size: 25px;
-  
+
 }
-input[type=text]  {
+
+input[type=text] {
   border: solid 1px rgba(158, 156, 156, 0.808);
   display: inline-block;
   margin-top: 20px;
   margin-bottom: 25px;
 
 }
+
 label,
 input {
   border-radius: 3px;
@@ -205,7 +211,7 @@ input {
   display: block;
   width: 100%;
   height: 45px;
-  
+
 }
 
 .message {
@@ -238,7 +244,15 @@ button[disabled] {
   margin-left: 0px;
   margin-right: 20px;
 }
+#resultadoSalvarImg {
+  color: rgb(255, 217, 0);
+  font-size: 20px;
+  border-radius: 5px;
+  display: block;
+  margin-top: 15px;
+  font-weight: 700;
 
+}
 #resultado {
   color: rgb(247, 10, 10);
   font-size: 20px;
@@ -246,7 +260,7 @@ button[disabled] {
   display: block;
   margin-top: 25px;
   font-weight: 700;
-  
+
 }
 
 #link:hover {
@@ -284,12 +298,74 @@ footer {
   display: none;
   animation: loading 1.2s infinite linear;
 }
+
 @keyframes loading {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
+
 #editarPerfil {
   font-size: 15px;
 }
+
 input {
   font-size: 20px;
+}
+
+
+/* adicionar foto modal */
+
+#modal-header-adcionar-foto {
+  background-color: #1587d3;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(248, 248, 248);
+}
+
+#modal-body-adciona-foto {
+  font-size: 18px;
+  height: 300px;
+  width: 500px;
+  text-align: center;
+  color: #1587d3;
+}
+
+#btn-primary {
+  font-size: 17px;
+  font-weight: 800;
+  height: 40px;
+
+}
+
+#uploadImg {
+  margin-top: 35px;
+}
+
+.fade.modal.show {
+  background-color: rgba(250, 250, 250, 0.363);
+  margin-top: -1vh;
+}
+
+#modal-input-file {
+  background-color: rgb(92, 92, 92);
+  height: 100px;
+
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  width: 50%;
+  text-align: center;
+  height: 200px;
+  border: 1px rgb(0, 37, 107) solid;
+  background-color: rgba(255, 255, 255, 0.308);
+  color: rgb(15, 15, 15);
+  text-transform: uppercase;
+  display: block;
+  margin-left: 25%;
+
 }
