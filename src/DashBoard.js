@@ -63,7 +63,7 @@ const DashBoard = () => {
       let email = Cookies.get("userName")
       var resultadoImg = document.getElementById('resultadoSalvarImg');
       
-      let response = await fetch('http://localhost:3001/salvarFoto', {
+      let response = await fetch('https://test-backend-12.herokuapp.com/salvarFoto', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -116,7 +116,7 @@ const DashBoard = () => {
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
     
-    let response = await fetch('http://localhost:3001/imagem', {
+    let response = await fetch('https://test-backend-12.herokuapp.com/imagem', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
