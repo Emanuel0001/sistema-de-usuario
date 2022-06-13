@@ -110,6 +110,32 @@ const DashBoard = () => {
   }
   imprimiImagem()
 
+  async function apagarFoto () {
+
+    let email = Cookies.get("userName");
+    var resultadoImg = document.getElementById('resultadoSalvarImg');
+    
+    let response = await fetch('https://test-backend-12.herokuapp.com/apagaImagem', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email})
+    })
+
+    const result = await response.json()
+    console.log(result.message)
+      console.log(result.error)
+
+      if(result.message){
+        resultadoImg.innerHTML = result.message
+      } else {
+        resultadoImg.innerHTML = result.error
+        
+      }
+    setIsBase64Code('');
+  }
+
 
   async function pegaImagem ( ) {
 
@@ -136,7 +162,7 @@ const DashBoard = () => {
       <nav className="menuNav">
         <p id="logoSite">DASHBOARD</p>
         <ul>
-          <li><img  onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || logo }/></li>
+          <li><div id="cssImagem"><img  onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || logo }/></div></li>
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={menu} /></a>
             <ul>
@@ -160,19 +186,19 @@ const DashBoard = () => {
             <label for="modal-input-file" >
               <img 
               id="uploadImg"
-              width='100'
-              height="100"
               src={ isBase64Code || uploadImg}>
               </img>
             </label>
          
         </div>  
-        
-          Click para enviar 
+        Click para enviar 
+          
          <div id="resultadoSalvarImg"></div>
           </Modal.Body>
         <Modal.Footer>
-
+        <Button id="btn-go-out" onClick={apagarFoto} >
+            Apagar foto
+          </Button>
           <Button id="btn-primary" onClick={salvarEFecharModal} >
             Salvar
           </Button>

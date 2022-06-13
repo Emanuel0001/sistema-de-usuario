@@ -245,7 +245,7 @@ button[disabled] {
   margin-right: 20px;
 }
 #resultadoSalvarImg {
-  color: rgb(255, 217, 0);
+  color: rgb(228, 110, 0);
   font-size: 20px;
   border-radius: 5px;
   display: block;
@@ -339,7 +339,8 @@ input {
 }
 
 #uploadImg {
-  margin-top: 35px;
+  width: 100%;
+  height: 100%;
 }
 
 .fade.modal.show {
@@ -361,11 +362,21 @@ label {
   width: 50%;
   text-align: center;
   height: 200px;
-  border: 1px rgb(0, 37, 107) solid;
+  border: 2px #3498db solid;
   background-color: rgba(255, 255, 255, 0.308);
   color: rgb(15, 15, 15);
   text-transform: uppercase;
   display: block;
   margin-left: 25%;
 
+}
+
+#btn-go-out {
+ font-weight: 800;
+ border: solid 2px #f81515;
+ background-color: #f81515;
+}
+
+#cssImagem {
+  width: 40px;
 }

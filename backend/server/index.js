@@ -146,19 +146,38 @@ app.post('/salvarFoto', (req, res) => {
 app.post('/imagem', (req, res) => {
 
     const email = req.body.email;
-
     client.query(`select id_cod_img from usuario WHERE email = $1`, [email]) 
        .then(results => {
         let resultado = results
 
-
         const id_cod_img = results.rows[0];
-        console.log(id_cod_img)
 
         if (resultado.rowCount === 1) {
             return res.json({ "message": id_cod_img});
         }
         else {
+
+        }
+    })
+});
+
+
+app.post('/apagaImagem', (req, res) => {
+
+    const email = req.body.email;
+    const isBase64Code = '';
+
+    client.query('UPDATE usuario SET id_cod_img = $1 WHERE email = $2', [isBase64Code, email]) 
+       .then(results => {
+        let resultado = results
+
+        console.log(resultado.rowCount)
+
+        if (resultado.rowCount === 1) {
+            return res.json({ "message": 'Apagada com sucesso!'});
+        }
+        else {
+            return res.json({ "error": 'Error ao apagar!'});
 
         }
     })
