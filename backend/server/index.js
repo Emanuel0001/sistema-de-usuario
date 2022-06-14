@@ -123,8 +123,10 @@ app.post('/cadastrar', (req, res) => {
 
 
 app.post('/salvarFoto', (req, res) => {
+
     const email = req.body.email;
     const isBase64Code = req.body.code64;
+    console.log(isBase64Code)
 
     client.query('UPDATE usuario SET id_cod_img = $1 WHERE email = $2', [isBase64Code, email])
         .then(results => {

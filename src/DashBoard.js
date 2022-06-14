@@ -14,8 +14,9 @@ const DashBoard = () => {
   const [isValidCadastro, setIsValidCadastro] = useState(false);
   const [isBase64Code, setIsBase64Code] = useState('')
   const [isImagem, setIsImagem] = useState('')
-  let history = useHistory();
+  const [tituloHeader, setIsTituloHeader] = useState('');
 
+  let history = useHistory();
   var userName = Cookies.get("userName")
 
 
@@ -43,7 +44,7 @@ const DashBoard = () => {
     Cookies.remove('email');
     Cookies.remove('x-access-token');
     history.push('/');
-  
+
   }
 
   async function submitForm(event) {
@@ -54,37 +55,38 @@ const DashBoard = () => {
     setIsValidCadastro(true);
   }
 
-  const fecharModal = ( ) => {
+  const fecharModal = () => {
     setIsValidCadastro(false);
   }
 
-   async function salvarEFecharModal( ) {
+  async function salvarEFecharModal() {
 
-      let email = Cookies.get("userName")
-      var resultadoImg = document.getElementById('resultadoSalvarImg');
-      
-      let response = await fetch('https://test-backend-12.herokuapp.com/salvarFoto', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: email, code64: isBase64Code})
+    let email = Cookies.get("userName")
+    var resultadoImg = document.getElementById('resultadoSalvarImg');
 
-      })
+    let response = await fetch('https://test-backend-12.herokuapp.com/salvarFoto', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: email, code64: isBase64Code })
+
+    })
 
 
-      const result = await response.json()
-      console.log(result.message)
-      console.log(result.error)
+    const result = await response.json()
+    console.log(result.message)
+    console.log(result.error)
 
-      if(result.message){
-        resultadoImg.innerHTML = result.message
-      } else {
-        resultadoImg.innerHTML = result.error
-        
-      }
+    if (result.message) {
+      setIsValidCadastro(false)
+      resultadoImg.innerHTML = result.message
+    } else {
+      resultadoImg.innerHTML = result.error
 
-      
+    }
+
+
   }
 
   const onChange = e => {
@@ -92,11 +94,11 @@ const DashBoard = () => {
     const file = files[0];
     getBase64(file);
   };
- 
+
   const onLoad = fileString => {
     setIsBase64Code(fileString)
   };
- 
+
   const getBase64 = file => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -104,71 +106,89 @@ const DashBoard = () => {
       onLoad(reader.result);
     };
   }
-  const imprimiImagem  = () =>{
+  const imprimiImagem = () => {
     var image = new Image();
 
   }
   imprimiImagem()
 
-  async function apagarFoto () {
+
+
+  async function apagarFoto() {
 
     let email = Cookies.get("userName");
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    
+
     let response = await fetch('https://test-backend-12.herokuapp.com/apagaImagem', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email})
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: email })
     })
 
     const result = await response.json()
     console.log(result.message)
-      console.log(result.error)
+    console.log(result.error)
 
-      if(result.message){
-        resultadoImg.innerHTML = result.message
-      } else {
-        resultadoImg.innerHTML = result.error
-        
-      }
+    if (result.message) {
+      function delay(n) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, n * 1000);
+            
+        });
+    }
+    resultadoImg.innerHTML = result.message
+    await delay(2);
+    resultadoImg.innerHTML = ''
+  } else {
+      resultadoImg.innerHTML = result.error
+
+    }
     setIsBase64Code('');
   }
 
 
-  async function pegaImagem ( ) {
+  async function pegaImagem() {
 
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    
+
     let response = await fetch('https://test-backend-12.herokuapp.com/imagem', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email})
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: email })
 
     })
-   
+
 
     const result = await response.json()
-    setIsImagem(result.message.id_cod_img)
-  }
-  pegaImagem()
+    if(result.message.id_cod_img){
+       setIsImagem(result.message.id_cod_img) 
+    setIsTituloHeader("Perfil")
+    } else {
+      setIsTituloHeader("Adcionar foto")
+      setIsImagem('')
+    }
+   
+  } pegaImagem()
+
+
   return (
     <div>
 
       <nav className="menuNav">
         <p id="logoSite">DASHBOARD</p>
         <ul>
-          <li><div id="cssImagem"><img  onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || logo }/></div></li>
+          <li><div id="cssImagem"><img onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || logo} /></div></li>
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={menu} /></a>
             <ul>
               <li> <Link onClick={abrirEditarPerfil} id="editarPerfil">Adicionar Foto</Link></li>
               <li><a></a></li>
-             
+
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
           </li>
@@ -178,25 +198,26 @@ const DashBoard = () => {
 
       <Modal id="modal-header-adcionar-foto" show={isValidCadastro} >
         <Modal.Header id="modal-header-adcionar-foto" closeButton onClick={fecharModal}>
-          Adicionar foto
+          {tituloHeader}
+
         </Modal.Header>
         <Modal.Body id="modal-body-adciona-foto">
-          <div> 
+          <div>
             <input type="file" id="modal-input-file" onChange={onChange}></input>
             <label for="modal-input-file" >
-              <img 
-              id="uploadImg"
-              src={ isBase64Code || uploadImg}>
+              <img
+                id="uploadImg"
+                src={isBase64Code || isImagem || uploadImg}>
               </img>
             </label>
-         
-        </div>  
-        Click para enviar 
-          
-         <div id="resultadoSalvarImg"></div>
-          </Modal.Body>
+
+          </div>
+          Click para enviar
+
+          <div id="resultadoSalvarImg"></div>
+        </Modal.Body>
         <Modal.Footer>
-        <Button id="btn-go-out" onClick={apagarFoto} >
+          <Button id="btn-go-out" onClick={apagarFoto} >
             Apagar foto
           </Button>
           <Button id="btn-primary" onClick={salvarEFecharModal} >
