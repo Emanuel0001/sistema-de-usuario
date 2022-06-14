@@ -138,9 +138,7 @@ const DashBoard = () => {
             
         });
     }
-    resultadoImg.innerHTML = result.message
-    await delay(2);
-    resultadoImg.innerHTML = ''
+    setIsValidCadastro(false)
   } else {
       resultadoImg.innerHTML = result.error
 
