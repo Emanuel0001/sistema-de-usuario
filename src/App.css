@@ -387,8 +387,6 @@ label:focus, input:focus, select:focus {
   height: 100px;
 
 }
-.modal-body{
-}
 
 input[type="file"] {
   display: none;
