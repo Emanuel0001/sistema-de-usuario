@@ -6,7 +6,9 @@ import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
 import logo from './imagens/icons8-imagem-96.png'
 import menu from './imagens/iconeMenu.png'
+
 import uploadImg from './imagens/uploadImg.png'
+
 import { Button, Modal } from 'react-bootstrap'
 
 const DashBoard = () => {
@@ -202,19 +204,21 @@ const DashBoard = () => {
 
         </Modal.Header>
         <Modal.Body id="modal-body-adciona-foto">
-          <div>
+         <img id="imagemCentroUpload"  src={uploadImg}></img>  
+         <div>
             <input type="file" id="modal-input-file" onChange={onChange}></input>
-            <label for="modal-input-file" >
+            <label for="modal-input-file">
+             
               <img
                 id="uploadImg"
-                src={isBase64Code || isImagem || uploadImg}>
+                src={isBase64Code || isImagem } >
               </img>
+             
             </label>
 
           </div>
           Click para enviar
 
-          <div id="resultadoSalvarImg"></div>
         </Modal.Body>
         <Modal.Footer>
           <Button id="btn-go-out" onClick={apagarFoto} >

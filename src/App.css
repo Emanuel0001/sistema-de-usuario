@@ -361,10 +361,20 @@ input {
   height: 40px;
 
 }
-
+#uploadImg:hover{
+  background-color: rgba(0, 174, 255, 0.062);
+  cursor: pointer;
+}
 #uploadImg {
   width: 100%;
+  border-radius: 5px;
+  border: 2px dashed rgba(7, 91, 187, 0.747);
   height: 100%;
+  background-color: #66666607;
+  text-decoration: none;
+}
+label:focus, input:focus, select:focus {
+  outline: 0;
 }
 
 .fade.modal.show {
@@ -377,21 +387,21 @@ input {
   height: 100px;
 
 }
+.modal-body{
+}
 
 input[type="file"] {
   display: none;
 }
 
 label {
-  width: 50%;
-  text-align: center;
-  height: 200px;
-  border: 2px #3498db solid;
-  background-color: rgba(255, 255, 255, 0.308);
-  color: rgb(15, 15, 15);
-  text-transform: uppercase;
-  display: block;
-  margin-left: 25%;
+  width: 70%;
+  margin-top: -40px;
+  display: inline-block;
+  height: 250px;
+  text-decoration: none;
+  color: rgb(2, 2, 2);
+
 
 }
 
@@ -403,4 +413,8 @@ label {
 
 #cssImagem {
   width: 40px;
+}
+#imagemCentroUpload{
+margin-bottom: -200px;
+
 }
