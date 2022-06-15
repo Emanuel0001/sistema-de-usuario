@@ -61,8 +61,8 @@
     
   } 
   #botao-entrar:hover {
-    color: rgb(2, 19, 92);
-    border: solid 1px rgb(1, 13, 63);
+    color: rgb(0, 0, 0);
+    border: solid 1px rgb(0, 0, 0);
     background-color: #007fb9;
   }
   #botao-entrar {
@@ -119,22 +119,6 @@
     display: block;
   }
   
-  #load {
-    width: 30px;
-    height: 30px;
-
-    border: rgba(0, 0, 0, 0.18) solid;
-    border-left-color: #e20202;
-    border-radius: 50%;
-    margin-top: 15px;
-    text-align: center;
-    display: inline-block;
-    display: none;
-    animation: loading 1.2s infinite linear;
-  }
-  @keyframes loading {
-    to {transform: rotate(360deg);}
-  }
 
   .modal-header{
     background-color: #1587d3;

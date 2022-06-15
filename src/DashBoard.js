@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
-import logo from './imagens/iconeLogin.png'
+import logo from './imagens/icons8-imagem-96.png'
 import menu from './imagens/iconeMenu.png'
 import uploadImg from './imagens/uploadImg.png'
 import { Button, Modal } from 'react-bootstrap'
@@ -184,8 +184,10 @@ const DashBoard = () => {
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={menu} /></a>
             <ul>
-              <li> <Link onClick={abrirEditarPerfil} id="editarPerfil">Adicionar Foto</Link></li>
-              <li><a></a></li>
+              <li> <a onClick={abrirEditarPerfil}>Adicionar Foto</a></li>
+              <li><a>2</a></li>
+              <li><a>3</a></li>
+              <li><a>4</a></li>
 
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
