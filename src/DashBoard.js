@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
 import logo from './imagens/icons8-imagem-96.png'
 import menu from './imagens/iconeMenu.png'
-
+import editarFoto from  './imagens/icons8-editar-imagem-48(2).png'
 import uploadImg from './imagens/uploadImg.png'
 
 import { Button, Modal } from 'react-bootstrap'
@@ -200,6 +200,8 @@ const DashBoard = () => {
 
       <Modal id="modal-header-adcionar-foto" show={isValidCadastro} >
         <Modal.Header id="modal-header-adcionar-foto" closeButton onClick={fecharModal}>
+       
+        <img id="imagemHeaderModal" src={ editarFoto}></img>
           {tituloHeader}
 
         </Modal.Header>

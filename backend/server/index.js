@@ -10,9 +10,9 @@ const port = process.env.PORT || 3001;
 let user = [];
 
 app.use(cors());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 const { Client } = require('pg');
 const { rows } = require('pg/lib/defaults');
