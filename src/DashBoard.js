@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
 import logo from './imagens/icons8-imagem-96.png'
 import menu from './imagens/iconeMenu.png'
-import editarFoto from  './imagens/icons8-editar-imagem-48(2).png'
+import editarFoto from './imagens/icons8-editar-imagem-48(2).png'
 import uploadImg from './imagens/uploadImg.png'
 
 import { Button, Modal } from 'react-bootstrap'
@@ -18,6 +18,8 @@ const DashBoard = () => {
   const [isImagem, setIsImagem] = useState('')
   const [tituloHeader, setIsTituloHeader] = useState('');
 
+  const [isValid64Code, setIsValid64Code] = useState(true);
+  const [isValidImage, setIsValidImage] = useState(false);
   let history = useHistory();
   var userName = Cookies.get("userName")
 
@@ -99,6 +101,7 @@ const DashBoard = () => {
 
   const onLoad = fileString => {
     setIsBase64Code(fileString)
+    setIsValid64Code(false)
   };
 
   const getBase64 = file => {
@@ -134,14 +137,9 @@ const DashBoard = () => {
     console.log(result.error)
 
     if (result.message) {
-      function delay(n) {
-        return new Promise(function (resolve) {
-            setTimeout(resolve, n * 1000);
-            
-        });
-    }
-    setIsValidCadastro(false)
-  } else {
+      setIsValidCadastro(false)
+      setIsValid64Code(true)
+    } else {
       resultadoImg.innerHTML = result.error
 
     }
@@ -150,7 +148,6 @@ const DashBoard = () => {
 
 
   async function pegaImagem() {
-
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
 
@@ -165,16 +162,35 @@ const DashBoard = () => {
 
 
     const result = await response.json()
-    if(result.message.id_cod_img){
-       setIsImagem(result.message.id_cod_img) 
-    setIsTituloHeader("Perfil")
+    if (result.message.id_cod_img) {
+      setIsImagem(result.message.id_cod_img)
+      setIsValidImage(true)
+
+
+      setIsTituloHeader("Perfil")
     } else {
       setIsTituloHeader("Adcionar foto")
-      setIsImagem('')
+      setIsValidImage(false);
+      setIsImagem('');
     }
-   
+
   } pegaImagem()
 
+  const dasabilitar = () => {
+    if (isValidImage || isValid64Code) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const dasabilitarApagarFoto = () => {
+    if (isValidImage) {
+      return false
+    } else {
+      return true
+    }
+  }
 
   return (
     <div>
@@ -200,22 +216,22 @@ const DashBoard = () => {
 
       <Modal id="modal-header-adcionar-foto" show={isValidCadastro} >
         <Modal.Header id="modal-header-adcionar-foto" closeButton onClick={fecharModal}>
-       
-        <img id="imagemHeaderModal" src={ editarFoto}></img>
+
+          <img id="imagemHeaderModal" src={editarFoto}></img>
           {tituloHeader}
 
         </Modal.Header>
         <Modal.Body id="modal-body-adciona-foto">
-         <img id="imagemCentroUpload"  src={uploadImg}></img>  
-         <div>
+          <img id="imagemCentroUpload" src={uploadImg}></img>
+          <div>
             <input type="file" id="modal-input-file" onChange={onChange}></input>
             <label for="modal-input-file">
-             
+
               <img
                 id="uploadImg"
-                src={isBase64Code || isImagem } >
+                src={isBase64Code || isImagem} >
               </img>
-             
+
             </label>
 
           </div>
@@ -223,12 +239,21 @@ const DashBoard = () => {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button id="btn-go-out" onClick={apagarFoto} >
+
+          <Button
+            id="btn-go-out"
+            disabled={dasabilitarApagarFoto()}
+            onClick={apagarFoto} >
             Apagar foto
           </Button>
-          <Button id="btn-primary" onClick={salvarEFecharModal} >
+
+          <Button
+            id="btn-primary"
+            disabled={dasabilitar()}
+            onClick={salvarEFecharModal} >
             Salvar
           </Button>
+
         </Modal.Footer>
       </Modal>
 
