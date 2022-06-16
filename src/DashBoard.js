@@ -60,7 +60,9 @@ const DashBoard = () => {
   }
 
   const fecharModal = () => {
+    setIsBase64Code('')
     setIsValidCadastro(false);
+
   }
 
   async function salvarEFecharModal() {
