@@ -13,6 +13,7 @@ body {
 
 @media screen and (max-width: 780px) {
 
+ 
   #imagemDoUsuario {
     display: none;
   }
@@ -464,4 +465,18 @@ thead tr th  {
 thead  {
   background-color: #0078c9;
 text-align: center;
+}
+
+
+@media screen and (max-width: 780px) {
+  #container-list {
+    width: 100%;
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-size: 17px;
+    font-weight: 800;
+    background-color: #FFF;
+    color: #012035;
+  }
 }
