@@ -63,7 +63,7 @@ const DashBoard = () => {
       let td_name = tr.insertCell();
       let td_email = tr.insertCell();
 
-      td_id_cod_img.innerHTML = `<img src= ${resultadoRegistros.usuarios.rows[i].id_cod_img || logo} width=\"100%\" height=\"40px\">`;
+      td_id_cod_img.innerHTML = `<img src= ${resultadoRegistros.usuarios.rows[i].id_cod_img || logo} width=\"70%\" height=\"30px\">`;
       td_name.innerText = resultadoRegistros.usuarios.rows[i].name;
       td_email.innerText = resultadoRegistros.usuarios.rows[i].email;
       
