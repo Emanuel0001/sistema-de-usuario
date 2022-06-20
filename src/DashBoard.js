@@ -245,7 +245,7 @@ const DashBoard = () => {
       </nav>
 
       <div id="container-list">
-        LISTA DE USUÁRIOS DO SITEMA
+        LISTA DE USUÁRIOS DO SISTEMA
         <table border="1">
           <thead>
             <tr>
