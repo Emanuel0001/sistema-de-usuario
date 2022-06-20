@@ -43,6 +43,9 @@ const verifyJWT = (req, res, next) => {
         next();
     })
 }
+
+
+
 app.get('/client', verifyJWT, (req, res) => {
     console.log(req.userId + ' fez chamada')
     res.status(200).send("Welcome 🙌 ");
@@ -164,6 +167,21 @@ app.post('/imagem', (req, res) => {
 });
 
 
+app.post('/buscarRegistros', (req, res) => {
+
+    client.query(`SELECT email,name , id_cod_img FROM usuario`) 
+       .then(results => {
+        
+      
+        var Resultado2 = results
+        var usuarios = [Resultado2.rows];
+        return res.json({ "usuarios": Resultado2});
+
+        
+    })
+
+});
+
 app.post('/apagaImagem', (req, res) => {
 
     const email = req.body.email;
@@ -175,10 +193,9 @@ app.post('/apagaImagem', (req, res) => {
 
         console.log(resultado.rowCount)
 
-        if (resultado.rowCount === 1) {
+        if(resultado.rowCount === 1) {
             return res.json({ "message": 'Apagada com sucesso!'});
-        }
-        else {
+        } else {
             return res.json({ "error": 'Error ao apagar!'});
 
         }

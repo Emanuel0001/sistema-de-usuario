@@ -42,7 +42,38 @@ const DashBoard = () => {
         history.push("/")
       }
     } validaToken()
+
+    async function buscaTodosRegistros() {
+      let tbody = document.getElementById('tbody')
+      tbody.innerText = '';
+
+      let response = await fetch('https://test-backend-12.herokuapp.com/buscarRegistros', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+
+      })
+      const resultadoRegistros = await response.json()
+
+      for (let i = 0; i <= resultadoRegistros.usuarios.rowCount; i++) {
+      let tr = tbody.insertRow();
+      
+      let td_id_cod_img = tr.insertCell();
+      let td_name = tr.insertCell();
+      let td_email = tr.insertCell();
+
+      td_id_cod_img.innerHTML = `<img src= ${resultadoRegistros.usuarios.rows[i].id_cod_img || logo} width=\"100%\" height=\"40px\">`;
+      td_name.innerText = resultadoRegistros.usuarios.rows[i].name;
+      td_email.innerText = resultadoRegistros.usuarios.rows[i].email;
+      
+      }
+    }
+    buscaTodosRegistros()
   }, []);
+
+
+
 
   const deletarCookie = () => {
     Cookies.remove('email');
@@ -205,9 +236,7 @@ const DashBoard = () => {
           <li><a><img id="menu" src={menu} /></a>
             <ul>
               <li> <a onClick={abrirEditarPerfil}>Adicionar Foto</a></li>
-              <li><a>2</a></li>
-              <li><a>3</a></li>
-              <li><a>4</a></li>
+            
 
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
@@ -215,6 +244,28 @@ const DashBoard = () => {
         </ul>
       </nav>
 
+      <div id="container-list">
+        LISTA DE USUÁRIOS DO SITEMA
+        <table border="1">
+          <thead>
+            <tr>
+              <th >Foto</th>
+              <th>Nome</th>
+              <th> E-mail</th>
+            </tr>
+          </thead>
+          <tbody boder='1' id="tbody">
+            <tr>
+              <td><img id="imagemDoUsuario" src={isImagem}></img></td>
+              <td>hitallosoares1@gmail.com</td>
+              <td>Emanuel</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
 
       <Modal id="modal-header-adcionar-foto" show={isValidCadastro} >
         <Modal.Header id="modal-header-adcionar-foto" closeButton onClick={fecharModal}>

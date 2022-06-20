@@ -427,3 +427,41 @@ margin-bottom: -200px;
  margin-right: 15px;
  height: 30px;
 }
+
+
+/*tabela*/
+
+#container-list {
+  width: 800px;
+  display: inline-block;
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  font-size: 17px;
+  font-weight: 800;
+  background-color: #FFF;
+  color: #012035;
+}
+table {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  border: 2px rgb(0, 140, 255) solid;
+}
+tr{
+  border: 1px rgb(0, 140, 255) solid;
+}
+td{
+  border: 1px rgb(0, 140, 255) solid;
+}
+tbody{
+  font-weight: 400;
+  background-color: rgba(9, 112, 209, 0.034);}
+thead tr th  {
+  background-color: #0077ffe1;
+  border: 1px rgb(0, 140, 255) solid;
+
+}
+thead  {
+  background-color: #0078c9;
+text-align: center;
+}
