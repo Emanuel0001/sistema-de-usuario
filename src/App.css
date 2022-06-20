@@ -139,7 +139,6 @@ ul li a {
 }
 
 ul li ul {
-  margin-top: 1px;
   position: fixed;
   background-color: rgb(255, 255, 255);
 }
