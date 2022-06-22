@@ -8,11 +8,15 @@ import logo from './imagens/icons8-imagem-96.png'
 import menu from './imagens/iconeMenu.png'
 import editarFoto from './imagens/icons8-editar-imagem-48(2).png'
 import uploadImg from './imagens/uploadImg.png'
-
 import { Button, Modal } from 'react-bootstrap'
 
 const DashBoard = () => {
-
+  const data = [
+    { name: "Anom", age: 19, gender: "Male" },
+    { name: "Megha", age: 19, gender: "Female" },
+    { name: "Subham", age: 25, gender: "Male" },
+  ]
+  const [dadosBackend, setDadosBackend] = useState([]);
   const [isValidCadastro, setIsValidCadastro] = useState(false);
   const [isBase64Code, setIsBase64Code] = useState('')
   const [isImagem, setIsImagem] = useState('')
@@ -44,6 +48,8 @@ const DashBoard = () => {
     } validaToken()
 
     async function buscaTodosRegistros() {
+      const div = document.getElementById('loadTable');
+
       let tbody = document.getElementById('tbody')
       tbody.innerText = '';
 
@@ -54,20 +60,20 @@ const DashBoard = () => {
         },
 
       })
-      const resultadoRegistros = await response.json()
+      div.style.display = 'inline-block';
+      await delay(5);
+      const resultadoRegistros = await response.json();
+      const usuarios = resultadoRegistros.usuarios.rows;
+      setDadosBackend(usuarios);
 
-      for (let i = 0; i <= resultadoRegistros.usuarios.rowCount; i++) {
-      let tr = tbody.insertRow();
-      
-      let td_id_cod_img = tr.insertCell();
-      let td_name = tr.insertCell();
-      let td_email = tr.insertCell();
+      function delay(n) {
+        return new Promise(function (resolve) {
+          setTimeout(resolve, n * 1000);
 
-      td_id_cod_img.innerHTML = `<img src= ${resultadoRegistros.usuarios.rows[i].id_cod_img || logo} width=\"70%\" height=\"30px\">`;
-      td_name.innerText = resultadoRegistros.usuarios.rows[i].name;
-      td_email.innerText = resultadoRegistros.usuarios.rows[i].email;
-      
+        });
       }
+
+      div.style.display = 'none';
     }
     buscaTodosRegistros()
   }, []);
@@ -236,7 +242,7 @@ const DashBoard = () => {
           <li><a><img id="menu" src={menu} /></a>
             <ul>
               <li> <a onClick={abrirEditarPerfil}>Adicionar Foto</a></li>
-            
+
 
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
@@ -246,25 +252,40 @@ const DashBoard = () => {
 
       <div id="container-list">
         LISTA DE USUÁRIOS DO SISTEMA
+
         <table border="1">
-          <thead>
-            <tr>
-              <th >Foto</th>
-              <th>Nome</th>
-              <th> E-mail</th>
-            </tr>
-          </thead>
-          <tbody boder='1' id="tbody">
-            <tr>
-              <td><img id="imagemDoUsuario" src={isImagem}></img></td>
-              <td>hitallosoares1@gmail.com</td>
-              <td>Emanuel</td>
-            </tr>
-
-          </tbody>
-
+          <tbody boder='1' id="tbody"></tbody>
         </table>
+        <div className="App">
+          <table >
+            <thead>
+              <tr>
+                <th >Foto</th>
+                <th>Nome</th>
+                <th> E-mail</th>
+              </tr>
+            </thead>
 
+            <div id='loadTable'></div>
+
+
+            {dadosBackend.map((val, key) => {
+              return (
+
+                <tbody id="tbody">
+
+                  <tr key={key}>
+                    <td><img id="imagemUsuario" src={val.id_cod_img || logo}></img></td>
+                    <td>{val.name}</td>
+                    <td>{val.email}</td>
+                  </tr>
+                </tbody>
+
+              )
+            })}
+          </table>
+
+        </div>
       </div>
 
       <Modal id="modal-header-adcionar-foto" show={isValidCadastro} >

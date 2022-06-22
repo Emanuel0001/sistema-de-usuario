@@ -465,7 +465,24 @@ thead  {
   background-color: #0078c9;
 text-align: center;
 }
+#imagemUsuario {
+  height: 40px;
+  width: 40px;
+}
+#loadTable{
+  width: 30px;
+  height: 30px;
 
+  border: rgba(0, 0, 0, 0.18) solid;
+  border-left-color: #0e68a3;
+  border-radius: 50%;
+  margin-top: 15px;
+  text-align: center;
+  margin-left: 175%;
+  display: block;
+  display: none;
+  animation: loading 1.2s infinite linear;
+}
 
 @media screen and (max-width: 780px) {
   #container-list {
