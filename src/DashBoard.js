@@ -4,35 +4,27 @@ import { useCookies } from 'react-cookie';
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
-import logo from './imagens/icons8-imagem-96.png'
-import menu from './imagens/iconeMenu.png'
-import editarFoto from './imagens/icons8-editar-imagem-48(2).png'
+import imagemUser from './imagens/imagem-user.png'
+import iconeMenu from './imagens/icone-Menu.png'
+import iconeEditarFoto from './imagens/editar-imagem.png'
 import uploadImg from './imagens/uploadImg.png'
 import { Button, Modal } from 'react-bootstrap'
 
 const DashBoard = () => {
-  const data = [
-    { name: "Anom", age: 19, gender: "Male" },
-    { name: "Megha", age: 19, gender: "Female" },
-    { name: "Subham", age: 25, gender: "Male" },
-  ]
   const [dadosBackend, setDadosBackend] = useState([]);
   const [isValidCadastro, setIsValidCadastro] = useState(false);
   const [isBase64Code, setIsBase64Code] = useState('')
   const [isImagem, setIsImagem] = useState('')
   const [tituloHeader, setIsTituloHeader] = useState('');
-
   const [isValid64Code, setIsValid64Code] = useState(true);
   const [isValidImage, setIsValidImage] = useState(false);
   let history = useHistory();
   var userName = Cookies.get("userName")
 
-
   useEffect(() => {
-
+    buscaTodosRegistros()
     const token = Cookies.get("x-access-token")
     var resultado = window.document.getElementById('nomeUser')
-
     async function validaToken() {
       const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
         method: 'GET',
@@ -41,57 +33,44 @@ const DashBoard = () => {
         }
       })
       if (resultadoCliente.status === 200) {
-
       } else {
         history.push("/")
       }
     } validaToken()
 
-    async function buscaTodosRegistros() {
-      const div = document.getElementById('loadTable');
-
-      let tbody = document.getElementById('tbody')
-      tbody.innerText = '';
-
-      let response = await fetch('https://test-backend-12.herokuapp.com/buscarRegistros', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-
-      })
-      div.style.display = 'inline-block';
-      await delay(5);
-      const resultadoRegistros = await response.json();
-      const usuarios = resultadoRegistros.usuarios.rows;
-      setDadosBackend(usuarios);
-
-      function delay(n) {
-        return new Promise(function (resolve) {
-          setTimeout(resolve, n * 1000);
-
-        });
-      }
-
-      div.style.display = 'none';
-    }
-    buscaTodosRegistros()
   }, []);
 
-
-
+  async function buscaTodosRegistros() {
+    const div = document.getElementById('loadTable');
+    let response = await fetch('https://test-backend-12.herokuapp.com/buscarRegistros', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    div.style.display = 'inline-block';
+    await delay();
+    const resultadoRegistros = await response.json();
+    const usuarios = resultadoRegistros.usuarios.rows;
+    setDadosBackend(usuarios);
+    function delay(n) {
+      return new Promise(function (resolve) {
+        setTimeout(resolve, n * 1000);
+      });
+    }
+    div.style.display = 'none';
+  }
 
   const deletarCookie = () => {
     Cookies.remove('email');
     Cookies.remove('x-access-token');
     history.push('/');
-
   }
 
   async function submitForm(event) {
     event.preventDefault();
-
   }
+
   const abrirEditarPerfil = () => {
     setIsValidCadastro(true);
   }
@@ -99,37 +78,25 @@ const DashBoard = () => {
   const fecharModal = () => {
     setIsBase64Code('')
     setIsValidCadastro(false);
-
   }
 
   async function salvarEFecharModal() {
-
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-
     let response = await fetch('https://test-backend-12.herokuapp.com/salvarFoto', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email: email, code64: isBase64Code })
-
     })
-
-
     const result = await response.json()
-    console.log(result.message)
-    console.log(result.error)
-
     if (result.message) {
       setIsValidCadastro(false)
       resultadoImg.innerHTML = result.message
     } else {
       resultadoImg.innerHTML = result.error
-
     }
-
-
   }
 
   const onChange = e => {
@@ -152,17 +119,12 @@ const DashBoard = () => {
   }
   const imprimiImagem = () => {
     var image = new Image();
-
   }
   imprimiImagem()
 
-
-
   async function apagarFoto() {
-
     let email = Cookies.get("userName");
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-
     let response = await fetch('https://test-backend-12.herokuapp.com/apagaImagem', {
       method: 'POST',
       headers: {
@@ -172,47 +134,35 @@ const DashBoard = () => {
     })
 
     const result = await response.json()
-    console.log(result.message)
-    console.log(result.error)
-
     if (result.message) {
       setIsValidCadastro(false)
       setIsValid64Code(true)
     } else {
       resultadoImg.innerHTML = result.error
-
     }
     setIsBase64Code('');
   }
 
-
   async function pegaImagem() {
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-
     let response = await fetch('https://test-backend-12.herokuapp.com/imagem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email: email })
-
     })
-
-
     const result = await response.json()
     if (result.message.id_cod_img) {
       setIsImagem(result.message.id_cod_img)
       setIsValidImage(true)
-
-
       setIsTituloHeader("Perfil")
     } else {
       setIsTituloHeader("Adcionar foto")
       setIsValidImage(false);
       setIsImagem('');
     }
-
   } pegaImagem()
 
   const dasabilitar = () => {
@@ -230,109 +180,89 @@ const DashBoard = () => {
       return true
     }
   }
-
   return (
     <div>
-
       <nav className="menuNav">
         <p id="logoSite">DASHBOARD</p>
         <ul>
-          <li><div id="cssImagem"><img onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || logo} /></div></li>
+          <li><div id="cssImagem"><img onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || imagemUser} /></div></li>
           <li><a id="nameUser">{userName}</a></li>
-          <li><a><img id="menu" src={menu} /></a>
+          <li><a><img id="menu" src={iconeMenu} /></a>
             <ul>
               <li> <a onClick={abrirEditarPerfil}>Adicionar Foto</a></li>
-
-
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
           </li>
         </ul>
       </nav>
-
-      <div id="container-list">
+      <div id="container-list" >
         LISTA DE USUÁRIOS DO SISTEMA
-
-        <table border="1">
-          <tbody boder='1' id="tbody"></tbody>
+        <table >
+          <thead>
+            <tr>
+              <th >Foto</th>
+              <th>Nome</th>
+              <th> E-mail</th>
+            </tr>
+          </thead>
+          <div id='loadTable'></div>
+          {dadosBackend.map((val, key) => {
+            return (
+              <tbody>
+                <tr key={key}>
+                  <td><img id="imagemUsuario" src={val.id_cod_img || imagemUser}></img></td>
+                  <td>{val.name}</td>
+                  <td>{val.email}</td>
+                </tr>
+              </tbody>
+            )
+          })}
         </table>
-        <div className="App">
-          <table >
-            <thead>
-              <tr>
-                <th >Foto</th>
-                <th>Nome</th>
-                <th> E-mail</th>
-              </tr>
-            </thead>
-
-            <div id='loadTable'></div>
-
-
-            {dadosBackend.map((val, key) => {
-              return (
-
-                <tbody id="tbody">
-
-                  <tr key={key}>
-                    <td><img id="imagemUsuario" src={val.id_cod_img || logo}></img></td>
-                    <td>{val.name}</td>
-                    <td>{val.email}</td>
-                  </tr>
-                </tbody>
-
-              )
-            })}
-          </table>
-
-        </div>
       </div>
-
       <Modal id="modal-header-adcionar-foto" show={isValidCadastro} >
         <Modal.Header id="modal-header-adcionar-foto" closeButton onClick={fecharModal}>
-
-          <img id="imagemHeaderModal" src={editarFoto}></img>
+          <img
+            id="imagemHeaderModal"
+            src={iconeEditarFoto}>
+          </img>
           {tituloHeader}
-
         </Modal.Header>
         <Modal.Body id="modal-body-adciona-foto">
-          <img id="imagemCentroUpload" src={uploadImg}></img>
+          <img
+            id="imagemCentroUpload"
+            src={uploadImg}>
+          </img>
           <div>
-            <input type="file" id="modal-input-file" onChange={onChange}></input>
+            <input
+              type="file"
+              id="modal-input-file"
+              onChange={onChange}>
+            </input>
             <label for="modal-input-file">
-
               <img
                 id="uploadImg"
                 src={isBase64Code || isImagem} >
               </img>
-
             </label>
-
           </div>
           Click para enviar
-
         </Modal.Body>
         <Modal.Footer>
-
           <Button
             id="btn-go-out"
             disabled={dasabilitarApagarFoto()}
             onClick={apagarFoto} >
             Apagar foto
           </Button>
-
           <Button
             id="btn-primary"
             disabled={dasabilitar()}
             onClick={salvarEFecharModal} >
             Salvar
           </Button>
-
         </Modal.Footer>
       </Modal>
-
     </div>
-
   );
 }
 

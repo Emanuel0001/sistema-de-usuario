@@ -14,16 +14,13 @@ import './App.css';
 const router = () => {
   return (
     <Router>
-         
       <Switch>
         <Route exact path='/' component={Login} />
         <Route exact path='/cadastrar' component={Cadastrar} />
         <Route exact path='/editarPerfil' component={editarPerfil}></Route>
         <Route exact path='/DashBoard' component={DashBoard}></Route>
       </Switch>
-
     </Router>
-
   )
 }
 

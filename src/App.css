@@ -439,8 +439,9 @@ margin-bottom: -200px;
   margin-bottom: 2vh;
   font-size: 17px;
   font-weight: 800;
-  background-color: #FFF;
+  background-color: rgb(255, 255, 255);
   color: #012035;
+
 }
 table {
   width: 100%;
@@ -472,7 +473,6 @@ text-align: center;
 #loadTable{
   width: 30px;
   height: 30px;
-
   border: rgba(0, 0, 0, 0.18) solid;
   border-left-color: #0e68a3;
   border-radius: 50%;
