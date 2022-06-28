@@ -49,15 +49,9 @@ const DashBoard = () => {
       },
     })
     div.style.display = 'inline-block';
-    await delay();
     const resultadoRegistros = await response.json();
     const usuarios = resultadoRegistros.usuarios.rows;
     setDadosBackend(usuarios);
-    function delay(n) {
-      return new Promise(function (resolve) {
-        setTimeout(resolve, n * 1000);
-      });
-    }
     div.style.display = 'none';
   }
 

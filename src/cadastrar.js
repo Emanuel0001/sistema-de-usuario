@@ -95,19 +95,12 @@ function App() {
         const result = await response.json()
         setApiResponse(result)
         var resultado = window.document.getElementById('resultado')
-        function delay(n) {
-            return new Promise(function (resolve) {
-                setTimeout(resolve, n * 1000);
-            });
-        }
         if (result.cadastrado) {
             divResultado.style.display = 'none';
-            await delay(5);
             setIsValidCadastro(true);
         } else {
             let i = 0;
             divResultado.style.display = 'none';
-            await delay(5);
             while (i <= 1) {
                 i++;
                 if (i == 1) {

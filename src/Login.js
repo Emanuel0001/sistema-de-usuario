@@ -67,8 +67,8 @@ function App() {
     setApiResponse(result)
     var resultado = window.document.getElementById('resultado')
     if (result.message) {
-     divResultado.style.display = 'none';
-     const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
+      divResultado.style.display = 'none';
+      const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
         method: 'GET',
         headers: {
           'x-access-token': token,
@@ -81,14 +81,9 @@ function App() {
         resultado.innerHTML = 'Token Inválido'
       }
     } else {
-      function delay(n) {
-        return new Promise(function (resolve) {
-          setTimeout(resolve, n * 1000);
-        });
-      }
+
       let i = 0;
       divResultado.style.display = 'none';
-      await delay(5);
       while (i <= 1) {
         i++;
         if (i == 1) {
@@ -105,8 +100,8 @@ function App() {
   const disabledButton = () => {
     if (isEmailValid && isValidPassword) {
       return false;
-    } 
-     else {
+    }
+    else {
       return true;
     }
   }
