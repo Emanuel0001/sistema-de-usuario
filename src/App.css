@@ -112,7 +112,12 @@ input[type=email],
   border-bottom: 2px solid #1684ce;
 }
 
+#menu-selecionar {
+  border: solid 2px #1684ce;
+  margin-top: -5px;
+}
 ul {
+  border-radius: 5px;
   padding: 0;
   list-style: none;
   margin: 0;
@@ -143,7 +148,6 @@ ul li ul {
   background-color: rgb(255, 255, 255);
 }
 
-
 ul li ul li {
   margin-top: 0px;
   border-bottom: 1px solid rgba(1, 138, 172, 0.322);
@@ -155,7 +159,7 @@ ul li ul li {
 
 ul li ul li a:hover {
   width: 155px;
- background-color: #66666656;  
+ background-color: #1969fd56;  
 }
 
 #editarPerfil {
@@ -307,7 +311,6 @@ footer {
 }
 
 #Sair {
-  color: #f81515;
   cursor: pointer;
   border-radius: 0;
   text-align: center;

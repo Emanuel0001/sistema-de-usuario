@@ -182,7 +182,7 @@ const DashBoard = () => {
           <li><div id="cssImagem"><img onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || imagemUser} /></div></li>
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={iconeMenu} /></a>
-            <ul>
+            <ul id="menu-selecionar">
               <li> <a onClick={abrirEditarPerfil}>Adicionar Foto</a></li>
               <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
             </ul>
