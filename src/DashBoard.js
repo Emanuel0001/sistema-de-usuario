@@ -179,12 +179,19 @@ const DashBoard = () => {
       <nav className="menuNav">
         <p id="logoSite">DASHBOARD</p>
         <ul>
-          <li><div id="cssImagem"><img onClick={abrirEditarPerfil} id="imagemDoUsuario" src={isImagem || imagemUser} /></div></li>
+          <li>
+            <div>
+              <img
+                onClick={abrirEditarPerfil}
+                class="imagemDoUsuario"
+                src={isImagem || imagemUser} />
+            </div>
+          </li>
           <li><a id="nameUser">{userName}</a></li>
           <li><a><img id="menu" src={iconeMenu} /></a>
             <ul id="menu-selecionar">
               <li> <a onClick={abrirEditarPerfil}>Adicionar Foto</a></li>
-              <li><a onClick={deletarCookie} id="Sair">Sair</a></li>
+              <li><a onClick={deletarCookie} >Sair</a></li>
             </ul>
           </li>
         </ul>
@@ -204,7 +211,7 @@ const DashBoard = () => {
             return (
               <tbody>
                 <tr key={key}>
-                  <td><img id="imagemUsuario" src={val.id_cod_img || imagemUser}></img></td>
+                  <td><img class="imagemUsuario" src={val.id_cod_img || imagemUser}></img></td>
                   <td>{val.name}</td>
                   <td>{val.email}</td>
                 </tr>
