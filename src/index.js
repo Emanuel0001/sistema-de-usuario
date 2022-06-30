@@ -5,7 +5,7 @@ import Login from './Login';
 import Cadastrar from './cadastrar'
 import Router from './Router'
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
