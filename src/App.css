@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: rgba(216, 215, 215, 0.822);
+  background-color: rgba(255, 255, 255, 0.822);
 }
 
 @media screen and (max-width: 780px) {
@@ -41,8 +41,6 @@ h1 {
   font-weight: 100;
   margin-top: 5px;
   margin-bottom: 20px;
-
-
 }
 
 #login-container {
@@ -56,6 +54,7 @@ h1 {
   padding: 20px 40px;
   margin-top: 5vh;
   text-align: center;
+  box-shadow: 0 5px 15px black;
 }
 
 #cadastrar-container {
@@ -69,6 +68,7 @@ h1 {
   padding: 20px 40px;
   margin-top: 3vh;
   text-align: center;
+  box-shadow: 0 5px 15px black;
 }
 
 #editar-container {
