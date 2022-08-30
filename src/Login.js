@@ -57,11 +57,11 @@ function App() {
       },
       body: JSON.stringify({ email: email, password: password })
     })
-
+ div.style.display = 'inline-block';
     const result = await response.json()
     const token = result.token
     const NomeUser = result.email
-    div.style.display = 'inline-block';
+   
     setCookie("x-access-token", token, { path: "/", secure: "true" })
     setCookie("userName", NomeUser, { path: "/", secure: "true" })
     setApiResponse(result)
