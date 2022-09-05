@@ -145,7 +145,7 @@ function App() {
       </form>
       <footer>
         <Link to='/cadastrar' id="link">Create Account</Link>
-        <Link to='/atualizarSenha' id="link-alterar-senha">Forgot password</Link>
+        <Link to='/atualizarSenha' id="link-alterar-senha">Change Password</Link>
       </footer>
     </div>
   );
