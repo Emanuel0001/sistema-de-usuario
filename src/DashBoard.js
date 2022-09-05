@@ -19,7 +19,7 @@ const DashBoard = () => {
   const [isValid64Code, setIsValid64Code] = useState(true);
   const [isValidImage, setIsValidImage] = useState(false);
   let history = useHistory();
-  var userName = Cookies.get("userName")
+  var userName = Cookies.get("userName");
 
   useEffect(() => {
     buscaTodosRegistros()

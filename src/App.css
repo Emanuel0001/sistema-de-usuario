@@ -13,7 +13,6 @@ body {
 
 @media screen and (max-width: 780px) {
 
-
   #imagemDoUsuario {
     display: none;
   }
@@ -305,8 +304,17 @@ button[disabled] {
 #link {
   font-size: 20px;
   color: rgb(0, 0, 0);
-  margin-bottom: 100px;
   padding: 10px;
+}
+
+#link-alterar-senha{
+  margin-top: -10px;
+  font-size: 20px;
+  color: rgb(0, 68, 255);
+  padding: 10px;
+  display: inline-block;
+  text-decoration: none;
+
 }
 
 footer {

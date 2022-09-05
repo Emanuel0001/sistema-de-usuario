@@ -107,7 +107,7 @@ function App() {
   }
 
   return (
-    <div id="login-container">
+    <div id="login-container"> 
       <img src={iconeLogin} />
       <h1>Sign In</h1>
       <form onSubmit={submitForm}>
@@ -145,6 +145,7 @@ function App() {
       </form>
       <footer>
         <Link to='/cadastrar' id="link">Create Account</Link>
+        <Link to='/atualizarSenha' id="link-alterar-senha">Forgot password</Link>
       </footer>
     </div>
   );

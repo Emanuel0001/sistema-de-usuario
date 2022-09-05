@@ -1,142 +1,158 @@
 /* geral */
 
-  
-  #tituloCadastrar {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 100;
-    margin-top: 5px;
-    margin-bottom: 10px;
-  
-  }
-  
-  
-  #login-container {
-    border-radius: 5px;
-    border: solid 1px rgba(68, 68, 68, 0.89);
-    background-color: #FFF;
-    width: 470px;
-    height: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px 30px;
-    margin-top: 5vh;
-    text-align: center;
-  }
-  
-  form {   
-    margin-top: 0px;
-    margin-bottom: 0px;
-  
-  }
- 
-  a:hover {
-    color: blue;
-  }
-  #name {
-    
-    display: flex;
-  }
 
-  #lastname {
-    width: 40%;
-    display: flex;
-  }
-  input[type=email],[type=password],[type=text] {
-    border:solid 1px rgba(102, 102, 102, 0.808);
-    padding: 10px;
-    margin-top: 0;
-    
-  }
-  
-  #botao-cadastrar-se:hover {
-    
-    color: #FFF;
-  }
-  
-  #botao-cadastrar-se {
-    color: rgb(16, 159, 241); 
-    font-size: 20px;
-    padding: 10px 170px;
-    
-  } 
-  #botao-entrar:hover {
-    color: rgb(0, 0, 0);
-    border: solid 1px rgb(0, 0, 0);
-    background-color: #007fb9;
-  }
-  #botao-entrar {
-    display: block;
-    text-align: center;
-    background-color: #3498db;
-    margin-top: 0px ;
-    
-  }
- 
-  input[type=submit], input[type=button] {
+#tituloCadastrar {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 100;
+  margin-top: 5px;
+  margin-bottom: 10px;
+
+}
+
+#login-container {
+  border-radius: 5px;
+  border: solid 1px rgba(68, 68, 68, 0.89);
+  background-color: #FFF;
+  width: 470px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 30px;
+  margin-top: 5vh;
+  text-align: center;
+}
+
+form {
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+
+a:hover {
+  color: blue;
+}
+
+#name {
+
+  display: flex;
+}
+
+#lastname {
+  width: 40%;
+  display: flex;
+}
+
+input[type=email],
+[type=password],
+[type=text] {
+  border: solid 1px rgba(102, 102, 102, 0.808);
+  padding: 10px;
+  margin-top: 0;
+
+}
+
+#botao-cadastrar-se:hover {
+
+  color: #FFF;
+}
+
+#botao-cadastrar-se {
+  color: rgb(16, 159, 241);
+  font-size: 20px;
+  padding: 10px 170px;
+
+}
+
+#botao-entrar:hover {
+  color: rgb(0, 0, 0);
+  border: solid 1px rgb(0, 0, 0);
+  background-color: #007fb9;
+}
+
+#botao-entrar {
+  display: block;
+  text-align: center;
+  background-color: #3498db;
+  margin-top: 0px;
+
+}
+
+input[type=submit],
+input[type=button] {
   color: #FFF;
   font-size: 25px;
   margin-top: 10px;
-  }
-  label, input {
-    font-size: 20px;
-    border-radius: 3px;
-    text-align: left;
-    display: block;
-    width: 100%;
-    height: 45px;
-    padding: 10px 1px;
-  }
-  .message {
-    margin-top: 0px;
-    font-size: 17px; 
-    
-  }
-  .success {
-    color: rgb(0, 185, 0);
-  }
-  
-  .error {
-    color: red;
-  }
-  button:disabled.true,
-  button[disabled]{
-    border: 1px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
-  }
-  #res {
-    color: rgb(224, 14, 14);
-    font-size: 23px;
-    border-radius: 5px;
-    height: 40px;  
-    float: left;
-    margin-left: 70px;
-    width: 300px;
-    margin-top: 30px;
-  }
-  #link{
-    display: block;
-  }
-  
+}
 
-  .modal-header{
-    background-color: #1587d3;
-font-size: 20px;
-font-weight: 600;
-color: rgb(248, 248, 248);
-  }
-  .modal-body{
-   font-size: 18px;
-   
-  }
-  #btn-primary{
-    font-size: 17px;
-    font-weight: 800;
-    height: 40px;
+label,
+input {
+  font-size: 20px;
+  border-radius: 3px;
+  text-align: left;
+  display: block;
+  width: 100%;
+  height: 45px;
+  padding: 10px 1px;
+}
 
-  }
-  .fade.modal.show{
-    background-color: rgba(250, 250, 250, 0.363);
-    margin-top: -1vh;
-  }
+.message {
+  margin-top: 0px;
+  font-size: 17px;
+
+}
+
+.success {
+  color: rgb(0, 185, 0);
+}
+
+.error {
+  color: red;
+}
+
+button:disabled.true,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+#res {
+  color: rgb(224, 14, 14);
+  font-size: 23px;
+  border-radius: 5px;
+  height: 40px;
+  float: left;
+  margin-left: 70px;
+  width: 300px;
+  margin-top: 30px;
+}
+
+#link {
+  display: block;
+}
+
+
+.modal-header {
+  background-color: #1587d3;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(248, 248, 248);
+}
+
+.modal-body {
+  font-size: 18px;
+
+}
+
+#btn-primary {
+  font-size: 17px;
+  font-weight: 800;
+  height: 40px;
+
+}
+
+.fade.modal.show {
+  background-color: rgba(250, 250, 250, 0.363);
+  margin-top: -1vh;
+}

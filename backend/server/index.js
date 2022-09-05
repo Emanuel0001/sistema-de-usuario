@@ -137,6 +137,23 @@ app.post('/apagaImagem', (req, res) => {
       }
     })
 });
+
+app.post('/alterarSenha', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const newPassword = req.body.passwordConfirmacao;
+  console.log(email,password,newPassword)
+  client.query('UPDATE usuario SET password = $1 WHERE email = $2', [newPassword, email])
+    .then(results => {
+      let resultado = results
+    console.log(resultado)
+      if (resultado.rowCount === 1) {
+        return res.json({ "message": 'alterado com sucesso!' });
+      } else {
+        return res.json({ "error": 'Error ao alterar!' });
+      }
+    })
+});
 app.listen(port, () => console.log(`Rodando na porta: ${port}!`))
 
 
