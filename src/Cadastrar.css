@@ -34,7 +34,7 @@ a:hover {
 }
 
 #name {
-
+  width: 200px;
   display: flex;
 }
 
@@ -52,6 +52,14 @@ input[type=email],
 
 }
 
+input [type=password],
+[type=text] {
+  border: solid 1px rgba(102, 102, 102, 0.808);
+  padding: 10px;
+  margin-top: 0;
+  width: 200px;
+
+}
 #botao-cadastrar-se:hover {
 
   color: #FFF;

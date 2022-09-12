@@ -49,6 +49,7 @@ function App() {
     event.preventDefault();
     document.getElementById('botao-entrar').disabled = true;
     var div = document.getElementById('load');
+    var chargePassword = document.getElementById('link-alterar-senha');
     var divResultado = document.getElementById('resultado');
     let response = await fetch('https://test-backend-12.herokuapp.com/login', {
       method: 'POST',
@@ -93,6 +94,7 @@ function App() {
           continue;
         }
         resultado.innerHTML = result.error
+        chargePassword.style.display = 'none'
       }
     }
   }

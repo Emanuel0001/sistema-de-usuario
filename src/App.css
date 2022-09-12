@@ -39,40 +39,39 @@ h1 {
   font-size: 40px;
   font-weight: 100;
   margin-top: 5px;
-  margin-bottom: 20px;
 }
 
 #login-container {
   border-radius: 5px;
-  border: solid 1px rgba(80, 78, 78, 0.808);
+  border: solid 1px rgba(163, 163, 163, 0.808);
   background-color: #FFF;
-  width: 450px;
-  height: 490px;
+  width: 410px;
+  height: 460px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 40px;
   margin-top: 5vh;
   text-align: center;
-  box-shadow: 0 5px 15px black;
+  box-shadow: 0 5px 15px rgb(61, 61, 61);
 }
 
 #cadastrar-container {
   border-radius: 5px;
-  border: solid 1px rgba(80, 78, 78, 0.808);
+  border: solid 1px rgba(163, 163, 163, 0.808);
   background-color: #FFF;
-  width: 500px;
-  height: 570px;
+  width: 450px;
+  height: 550px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 40px;
   margin-top: 3vh;
   text-align: center;
-  box-shadow: 0 5px 15px black;
+  box-shadow: 0 5px 15px rgb(61, 61, 61);
 }
 
 #editar-container {
   border-radius: 5px;
-  border: solid 1px rgba(80, 78, 78, 0.808);
+  border: solid 1px rgba(163, 163, 163, 0.808);
   background-color: #FFF;
   width: 450px;
   height: 470px;
@@ -292,7 +291,7 @@ button[disabled] {
   font-size: 20px;
   border-radius: 5px;
   display: block;
-  margin-top: 25px;
+  margin-top: 5px;
   font-weight: 700;
 
 }

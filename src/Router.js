@@ -18,7 +18,6 @@ const router = () => {
         <Route exact path='/' component={Login} />
         <Route exact path='/cadastrar' component={Cadastrar} />
         <Route exact path='/atualizarSenha' component={AtualizarSenha} />
-
         <Route exact path='/DashBoard' component={DashBoard}></Route>
       </Switch>
     </Router>
