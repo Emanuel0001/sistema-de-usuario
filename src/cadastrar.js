@@ -84,7 +84,7 @@ function App() {
   async function submitForm(event) {
     event.preventDefault();
     document.getElementById('botao-entrar').disabled = true;
-    let response = await fetch('https://test-backend-12.herokuapp.com/cadastrar', {
+    let response = await fetch('http://localhost:3001/cadastrar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

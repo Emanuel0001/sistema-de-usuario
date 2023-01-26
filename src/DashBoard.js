@@ -20,13 +20,13 @@ const DashBoard = () => {
   const [isValidImage, setIsValidImage] = useState(false);
   let history = useHistory();
   var userName = Cookies.get("userName");
-
+console.log(isBase64Code)
   useEffect(() => {
     buscaTodosRegistros()
     const token = Cookies.get("x-access-token")
     var resultado = window.document.getElementById('nomeUser')
     async function validaToken() {
-      const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
+      const resultadoCliente = await fetch('http://localhost:3001/client', {
         method: 'GET',
         headers: {
           'x-access-token': token
@@ -42,7 +42,7 @@ const DashBoard = () => {
 
   async function buscaTodosRegistros() {
     const div = document.getElementById('loadTable');
-    let response = await fetch('https://test-backend-12.herokuapp.com/buscarRegistros', {
+    let response = await fetch('http://localhost:3001/buscarRegistros', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ const DashBoard = () => {
   async function salvarEFecharModal() {
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    let response = await fetch('https://test-backend-12.herokuapp.com/salvarFoto', {
+    let response = await fetch('http://localhost:3001/salvarFoto', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -119,7 +119,7 @@ const DashBoard = () => {
   async function apagarFoto() {
     let email = Cookies.get("userName");
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    let response = await fetch('https://test-backend-12.herokuapp.com/apagaImagem', {
+    let response = await fetch('http://localhost:3001/apagaImagem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -140,7 +140,7 @@ const DashBoard = () => {
   async function pegaImagem() {
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    let response = await fetch('https://test-backend-12.herokuapp.com/imagem', {
+    let response = await fetch('http://localhost:3001/imagem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -148,8 +148,8 @@ const DashBoard = () => {
       body: JSON.stringify({ email: email })
     })
     const result = await response.json()
-    if (result.message.id_cod_img) {
-      setIsImagem(result.message.id_cod_img)
+    if (result.message.img) {
+      setIsImagem(result.message.img)
       setIsValidImage(true)
       setIsTituloHeader("Perfil")
     } else {
@@ -211,7 +211,7 @@ const DashBoard = () => {
             return (
               <tbody>
                 <tr key={key}>
-                  <td><img class="imagemUsuario" src={val.id_cod_img || imagemUser}></img></td>
+                  <td><img class="imagemUsuario" src={val.img || imagemUser}></img></td>
                   <td>{val.name}</td>
                   <td>{val.email}</td>
                 </tr>

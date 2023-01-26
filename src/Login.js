@@ -51,7 +51,7 @@ function App() {
     var div = document.getElementById('load');
     var chargePassword = document.getElementById('link-alterar-senha');
     var divResultado = document.getElementById('resultado');
-    let response = await fetch('https://test-backend-12.herokuapp.com/login', {
+    let response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ function App() {
     var resultado = window.document.getElementById('resultado')
     if (result.message) {
       divResultado.style.display = 'none';
-      const resultadoCliente = await fetch('https://test-backend-12.herokuapp.com/client', {
+      const resultadoCliente = await fetch('http://localhost:3001/client', {
         method: 'GET',
         headers: {
           'x-access-token': token,

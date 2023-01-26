@@ -10,7 +10,6 @@ let user = [];
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb' }));
-
 const { Client } = require('pg');
 const { rows } = require('pg/lib/defaults');
 const USER_BD = process.env.USER_BD
@@ -70,7 +69,7 @@ app.post('/cadastrar', (req, res) => {
         res.json({ "error": "E-mail já possui cadastro" })
       } else {
         if (password === passwordConfirmacao) {
-          client.query(`INSERT INTO usuario (email,password,name) VALUES ($1, $2, $3)`, [email, password, name])
+          client.query(`INSERT INTO usuario (email,password,name,img) VALUES ($1, $2, $3, $4)`, [email, password, name, ""])
             .then(results => {
               const resultado = results
               if (resultado.rowCount === 1) {
@@ -89,7 +88,7 @@ app.post('/cadastrar', (req, res) => {
 app.post('/salvarFoto', (req, res) => {
   const email = req.body.email;
   const isBase64Code = req.body.code64;
-  client.query('UPDATE usuario SET id_cod_img = $1 WHERE email = $2', [isBase64Code, email])
+  client.query('UPDATE usuario SET img = $1 WHERE email = $2', [isBase64Code, email])
     .then(results => {
       let resultado = results;
       if (resultado.rowCount === 1) {
@@ -103,7 +102,7 @@ app.post('/salvarFoto', (req, res) => {
 
 app.post('/imagem', (req, res) => {
   const email = req.body.email;
-  client.query(`select id_cod_img from usuario WHERE email = $1`, [email])
+  client.query(`select img from usuario WHERE email = $1`, [email])
     .then(results => {
       let resultado = results
       const id_cod_img = results.rows[0];
@@ -116,7 +115,7 @@ app.post('/imagem', (req, res) => {
 });
 
 app.post('/buscarRegistros', (req, res) => {
-  client.query(`SELECT email,name , id_cod_img FROM usuario`)
+  client.query(`SELECT email,name , img FROM usuario`)
     .then(results => {
       var Resultado2 = results
       var usuarios = [Resultado2.rows];
@@ -127,7 +126,7 @@ app.post('/buscarRegistros', (req, res) => {
 app.post('/apagaImagem', (req, res) => {
   const email = req.body.email;
   const isBase64Code = '';
-  client.query('UPDATE usuario SET id_cod_img = $1 WHERE email = $2', [isBase64Code, email])
+  client.query('UPDATE usuario SET img = $1 WHERE email = $2', [isBase64Code, email])
     .then(results => {
       let resultado = results
       if (resultado.rowCount === 1) {
