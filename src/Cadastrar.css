@@ -36,6 +36,7 @@ a:hover {
 #name {
   width: 200px;
   display: flex;
+  border: solid 2px rgba(158, 156, 156, 0.808);
 }
 
 #lastname {

@@ -47,9 +47,12 @@ function App() {
 
   async function submitForm(event) {
     event.preventDefault();
+    var div = document.getElementById('load');
+    div.style.display = 'inline-block';
+    
     console.log('clicou')
     document.getElementById('botao-entrar').disabled = true;
-    var div = document.getElementById('load');
+    
     var chargePassword = document.getElementById('link-alterar-senha');
     var divResultado = document.getElementById('resultado');
     let response = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/login', {
@@ -80,6 +83,8 @@ function App() {
       if (resultadoCliente.status === 200) {
         history.push("/Dashboard")
       } else {
+        div.style.display = 'none';
+
         resultado.innerHTML = 'Token Inválido'
       }
     } else {
@@ -95,6 +100,7 @@ function App() {
           continue;
         }
         resultado.innerHTML = result.error
+        div.style.display = 'none';
         chargePassword.style.display = 'none'
       }
     }
