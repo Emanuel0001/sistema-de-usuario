@@ -47,11 +47,12 @@ function App() {
 
   async function submitForm(event) {
     event.preventDefault();
+    console.log('clicou')
     document.getElementById('botao-entrar').disabled = true;
     var div = document.getElementById('load');
     var chargePassword = document.getElementById('link-alterar-senha');
     var divResultado = document.getElementById('resultado');
-    let response = await fetch('http://localhost:3001/login', {
+    let response = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -69,7 +70,7 @@ function App() {
     var resultado = window.document.getElementById('resultado')
     if (result.message) {
       divResultado.style.display = 'none';
-      const resultadoCliente = await fetch('http://localhost:3001/client', {
+      const resultadoCliente = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/client', {
         method: 'GET',
         headers: {
           'x-access-token': token,

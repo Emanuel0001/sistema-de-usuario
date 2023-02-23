@@ -22,17 +22,18 @@ const DashBoard = () => {
   var userName = Cookies.get("userName");
 console.log(isBase64Code)
   useEffect(() => {
-    buscaTodosRegistros()
+    
     const token = Cookies.get("x-access-token")
     var resultado = window.document.getElementById('nomeUser')
     async function validaToken() {
-      const resultadoCliente = await fetch('http://localhost:3001/client', {
+      const resultadoCliente = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/client', {
         method: 'GET',
         headers: {
           'x-access-token': token
         }
       })
       if (resultadoCliente.status === 200) {
+        buscaTodosRegistros()
       } else {
         history.push("/")
       }
@@ -42,7 +43,7 @@ console.log(isBase64Code)
 
   async function buscaTodosRegistros() {
     const div = document.getElementById('loadTable');
-    let response = await fetch('http://localhost:3001/buscarRegistros', {
+    let response = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/buscarRegistros', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -77,7 +78,7 @@ console.log(isBase64Code)
   async function salvarEFecharModal() {
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    let response = await fetch('http://localhost:3001/salvarFoto', {
+    let response = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/salvarFoto', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -119,7 +120,7 @@ console.log(isBase64Code)
   async function apagarFoto() {
     let email = Cookies.get("userName");
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    let response = await fetch('http://localhost:3001/apagaImagem', {
+    let response = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/apagaImagem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -140,7 +141,7 @@ console.log(isBase64Code)
   async function pegaImagem() {
     let email = Cookies.get("userName")
     var resultadoImg = document.getElementById('resultadoSalvarImg');
-    let response = await fetch('http://localhost:3001/imagem', {
+    let response = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/imagem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

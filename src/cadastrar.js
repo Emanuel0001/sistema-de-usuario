@@ -84,7 +84,7 @@ function App() {
   async function submitForm(event) {
     event.preventDefault();
     document.getElementById('botao-entrar').disabled = true;
-    let response = await fetch('http://localhost:3001/cadastrar', {
+    let response = await fetch('https://node-express-api-sistema-de-usuario.onrender.com/cadastrar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
