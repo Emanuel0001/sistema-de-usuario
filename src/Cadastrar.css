@@ -11,9 +11,8 @@
 }
 
 #login-container {
-  border-radius: 5px;
-  border: solid 1px rgba(68, 68, 68, 0.89);
-  background-color: #FFF;
+  border-radius: 25px;
+  background-color: rgba(61, 35, 100, 1);;
   width: 470px;
   height: 500px;
   margin-left: auto;
@@ -36,7 +35,8 @@ a:hover {
 #name {
   width: 200px;
   display: flex;
-  border: solid 2px rgba(158, 156, 156, 0.808);
+  border-radius: 15px;
+  padding: 20px;
 }
 
 #lastname {
@@ -74,18 +74,10 @@ input [type=password],
 }
 
 #botao-entrar:hover {
-  color: rgb(0, 0, 0);
-  border: solid 1px rgb(0, 0, 0);
-  background-color: #007fb9;
+  color: rgb(255, 255, 255);
+  background-color:  #ff8000d2;
 }
 
-#botao-entrar {
-  display: block;
-  text-align: center;
-  background-color: #3498db;
-  margin-top: 0px;
-
-}
 
 input[type=submit],
 input[type=button] {

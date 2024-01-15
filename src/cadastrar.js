@@ -128,7 +128,7 @@ function App() {
   }
   return (
     <div id="cadastrar-container">
-      <img src={iconeImagem}></img>
+     
       <h1 id='tituloCadastrar'>Create Account</h1>
       <form onSubmit={submitForm}>
         <input

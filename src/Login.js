@@ -117,8 +117,7 @@ function App() {
 
   return (
     <div id="login-container"> 
-      <img src={iconeLogin} />
-      <h1>Sign In</h1>
+      <h1>login to continue</h1>
       <form onSubmit={submitForm}>
         <i class="bi bi-envelope"></i>
         <input
